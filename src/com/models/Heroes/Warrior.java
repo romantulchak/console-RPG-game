@@ -16,6 +16,7 @@ public class Warrior extends Hero implements Serializable {
         this.setAttackAmount(12);
         this.setHealthPoints(100);
         this.setManaPoints(50);
+        this.setDefence(8);
         this.setName(name);
         this.setAttackType(AttackType.PHYSICAL);
         this.setMoney(0);

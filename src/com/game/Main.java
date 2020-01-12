@@ -120,8 +120,37 @@ public class Main {
 
     private static void heroMenu(UserController userController) {
 
-            userController.getCurrentHero().info();
+        userController.getCurrentHero().info();
+        while (true) {
+            out.println("1) Show information about hero");
+            out.println("2) Show inventory");
+            out.println("3) Show skills");
+            out.println("4) Battle");
+            out.println("5) Shop");
+            out.println("6) Change hero");
+            out.println("7) Exit");
+            int id = input.nextInt();
+            input.nextLine();
+            switch (id) {
+                case 1:
+                    userController.getCurrentHero().info();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    exit(0);
 
+            }
+
+        }
     }
 
     private static void createHero(@NotNull UserController userController) {

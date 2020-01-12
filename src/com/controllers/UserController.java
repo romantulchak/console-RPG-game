@@ -74,6 +74,7 @@ public class UserController {
         User userToFind = users.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null);
         if (userToFind == null) {
             User user = new User(name, password);
+            user.setHeroes(new ArrayList<Hero>());
             users.add(user);
             save();
             isSuccess = true;
@@ -108,7 +109,6 @@ public class UserController {
             if (hero == null) {
                 switch (id) {
                     case 1:
-
                         heroes.add(new Warrior(name, heroId));
                         currentUser.setHeroes(heroes);
                         break;
@@ -137,11 +137,15 @@ public class UserController {
 
     public void removeHero(int id){
         Hero hero = currentUser.getHeroes().stream().filter(x->x.getId() == id).findFirst().orElse(null);
-        heroes.remove(hero);
-        currentUser.setHeroes(heroes);
-        save();
-        System.out.println("You had been deleted: " + heroes.stream().filter(s->s.getId() == id).findFirst().orElse(null));
+        if (hero !=null) {
 
+            heroes.remove(hero);
+            currentUser.setHeroes(heroes);
+            save();
+            System.out.println("You had been deleted: " + hero.getName());
+        }else {
+            System.out.println("The hero was not found");
+        }
     }
     public Hero getCurrentHero() {
         return currentHero;

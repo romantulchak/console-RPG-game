@@ -12,13 +12,33 @@ public abstract class Hero implements IBaseClass, Serializable {
     private int manaPoints;
     private int level;
     private int attackAmount;
+    private int defence;
     private int maxHealthPoints;
     private int maxManaPoints;
+    private int experience;
+    private int experienceToUp = 50;
     private String profession;
     private String name;
     private AttackType attackType;
     private int money;
 
+    public int getExperience() {
+        return experience;
+    }
+
+    public void setExperience(int experience) {
+        if (experience < 0)this.experience = 0;
+        else this.experience = experience;
+    }
+
+    public int getExperienceToUp() {
+        return experienceToUp;
+    }
+
+    public void setExperienceToUp(int experienceToUp) {
+        if (experienceToUp < 0) this.experienceToUp =0;
+        else this.experienceToUp = experienceToUp;
+    }
 
     public String getName() {
         return name;
@@ -120,11 +140,13 @@ public abstract class Hero implements IBaseClass, Serializable {
 
     @Override
     public void info() {
-        System.out.printf("Nickname: %s \t Level: %d \n" +
+        System.out.printf("Nickname: %s \t Level: %d \t Experience: %d \t Experience to up: %d \n" +
                         "Health: %d \t Mana: %d \n Attack type: %s \t Attack: %d \n" +
-                        "Money: %d" ,
+                        "Money: %d \n" ,
                 this.name,
                 this.level,
+                this.experience,
+                this.experienceToUp,
                 this.healthPoints,
                 this.manaPoints,
                 this.attackType,
@@ -156,5 +178,13 @@ public abstract class Hero implements IBaseClass, Serializable {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
     }
 }
