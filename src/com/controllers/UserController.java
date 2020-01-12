@@ -104,24 +104,30 @@ public class UserController {
 
     public void setUserHero(String name,int id, int heroId) {
         if (currentUser.getHeroes().size() < currentUser.getMaxHero()) {
-            switch (id) {
-                case 1:
+            Hero hero = heroes.stream().filter(s->s.getId() == heroId).findFirst().orElse(null);
+            if (hero == null) {
+                switch (id) {
+                    case 1:
 
-                    heroes.add(new Warrior(name, heroId));
-                    currentUser.setHeroes(heroes);
-                    break;
+                        heroes.add(new Warrior(name, heroId));
+                        currentUser.setHeroes(heroes);
+                        break;
 
-                case 2:
-                    heroes.add(new Mage(name, heroId));
-                    currentUser.setHeroes(heroes);
-                    break;
-                case 3:
-                    heroes.add(new Archer(name, heroId));
-                    currentUser.setHeroes(heroes);
-                    break;
+                    case 2:
+                        heroes.add(new Mage(name, heroId));
+                        currentUser.setHeroes(heroes);
+                        break;
+                    case 3:
+                        heroes.add(new Archer(name, heroId));
+                        currentUser.setHeroes(heroes);
+                        break;
 
+                }
+                save();
+            }else {
+                System.out.println("Hero with the same id has already been created");
             }
-            save();
+
          }else {
             System.out.println("You have created a maximum of heroes");
         }

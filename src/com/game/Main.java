@@ -58,7 +58,7 @@ public class Main {
             }
             while (true) {
                 out.println(userController.getCurrentUser().getName());
-                out.println("What do you wont to do ?");
+                out.println("What do you want to do ?");
                 out.println("1) Choose hero");
                 out.println("2) Create new hero");
                 out.println("3) Show all heroes");
@@ -94,10 +94,13 @@ public class Main {
     private static void showAllHeroes(UserController userController) {
 
         for (Hero hero : userController.getCurrentUser().getHeroes()) {
-            out.printf("Hero id: %d \t Hero name: %s \t Hero profession: %s \n",
+            out.printf("Hero id: %d \t Hero name: %s \t Hero profession: %s \t  Health: %d \t Mana: %d \t Attack: %d\n",
                     hero.getId(),
                     hero.getName(),
-                    hero.getProfession()
+                    hero.getProfession(),
+                    hero.getHealthPoints(),
+                    hero.getManaPoints(),
+                    hero.getAttackAmount()
                     );
         }
 

@@ -49,8 +49,9 @@ public abstract class Hero implements IBaseClass, Serializable {
     }
 
     public void setManaPoints(int manaPoints) {
-        if (manaPoints<0)
-        this.manaPoints = manaPoints;
+        if (manaPoints<0) this.manaPoints =0;
+        else if (manaPoints > this.manaPoints) this.manaPoints = this.maxManaPoints;
+        else this.manaPoints = manaPoints;
     }
 
     public int getLevel() {
