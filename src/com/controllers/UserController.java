@@ -115,20 +115,20 @@ public class UserController {
             if (hero == null) {
                 switch (id) {
                     case 1:
-                        item = new Weapon("Silver Sword",8, 5);
+                        item = new Weapon("Silver Sword",8, 5,0,130);
                         inventory.setItems(item);
                         heroes.add(new Warrior(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
 
                     case 2:
-                        item = new Weapon("Wooden Staff ",4, 2);
+                        item = new Weapon("Wooden Staff ",4, 2, 0, 95);
                         inventory.setItems(item);
                         heroes.add(new Mage(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
                     case 3:
-                        item = new Weapon("Silver Bow",6, 5);
+                        item = new Weapon("Silver Bow",6, 5, 0 , 110);
                         inventory.setItems(item);
                         heroes.add(new Archer(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
