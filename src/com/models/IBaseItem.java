@@ -1,8 +1,9 @@
 package com.models;
 
 public interface IBaseItem {
-    void removeItem();
-    void setItem();
-    void dropItem();
+    void removeItem(User user);
+    void setItem(User user);
+    void dropItem(User user);
     void takeOfItem();
+    void info();
 }

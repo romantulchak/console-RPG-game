@@ -3,7 +3,9 @@ package com.game;
 import com.controllers.UserController;
 import com.models.EHeroes;
 import com.models.Hero;
-import org.jetbrains.annotations.NotNull;
+import com.models.Item;
+import com.sun.istack.internal.NotNull;
+
 
 import java.util.Scanner;
 
@@ -46,7 +48,7 @@ public class Main {
 
     }
 
-    private static void menu(@org.jetbrains.annotations.NotNull UserController userController) {
+    private static void menu(UserController userController) {
 
 
         if (userController.isFirstHero) {
@@ -136,6 +138,7 @@ public class Main {
                     userController.getCurrentHero().info();
                     break;
                 case 2:
+                    showInventory(userController);
                     break;
                 case 3:
                     break;
@@ -151,6 +154,26 @@ public class Main {
             }
 
         }
+    }
+
+    private static void showInventory(UserController userController) {
+        for (Item item:userController.getCurrentHero().getInventory().getItems()
+        ) {
+            item.info();
+        }
+        out.println("What do you want to do ?");
+        out.println("1) Set item");
+        out.println("2) Sell item");
+        int id = input.nextInt();
+        input.nextLine();
+        switch (id){
+            case 1:
+                //TODO: How to set an item?
+                break;
+            case 2:
+                break;
+        }
+
     }
 
     private static void createHero(@NotNull UserController userController) {

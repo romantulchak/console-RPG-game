@@ -2,11 +2,12 @@ package com.models.Heroes;
 
 import com.models.EHeroes;
 import com.models.Hero;
+import com.models.Inventory;
 
 import java.io.Serializable;
 
 public class Mage extends Hero implements Serializable  {
-    public Mage(String name, int id){
+    public Mage(String name, int id, Inventory inventory){
         this.setId(id);
         this.setMaxHealthPoints(80);
         this.setMaxManaPoints(80);
@@ -19,5 +20,6 @@ public class Mage extends Hero implements Serializable  {
         this.setDefence(4);
         this.setAttackType(AttackType.MAGICAL_RANGE);
         this.setMoney(0);
+        this.setInventory(inventory);
     }
 }

@@ -2,11 +2,12 @@ package com.models.Heroes;
 
 import com.models.EHeroes;
 import com.models.Hero;
+import com.models.Inventory;
 
 import java.io.Serializable;
 
 public class Archer extends Hero implements Serializable {
-    public Archer(String name,int id){
+    public Archer(String name, int id, Inventory inventory){
         this.setId(id);
         this.setMaxHealthPoints(90);
         this.setMaxManaPoints(75);
@@ -19,6 +20,7 @@ public class Archer extends Hero implements Serializable {
         this.setName(name);
         this.setAttackType(AttackType.PHYSICAL);
         this.setMoney(0);
+        this.setInventory(inventory);
 
     }
 

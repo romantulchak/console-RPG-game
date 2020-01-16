@@ -21,6 +21,7 @@ public abstract class Hero implements IBaseClass, Serializable {
     private String name;
     private AttackType attackType;
     private int money;
+    private Inventory inventory;
 
     public int getExperience() {
         return experience;
@@ -142,7 +143,7 @@ public abstract class Hero implements IBaseClass, Serializable {
     public void info() {
         System.out.printf("Nickname: %s \t Level: %d \t Experience: %d \t Experience to up: %d \n" +
                         "Health: %d \t Mana: %d \n Attack type: %s \t Attack: %d \n" +
-                        "Money: %d \n" ,
+                        "Money: %d \n Inventory: %s" ,
                 this.name,
                 this.level,
                 this.experience,
@@ -151,7 +152,8 @@ public abstract class Hero implements IBaseClass, Serializable {
                 this.manaPoints,
                 this.attackType,
                 this.attackAmount,
-                this.money
+                this.money,
+                this.inventory
                 );
 
     }
@@ -186,5 +188,13 @@ public abstract class Hero implements IBaseClass, Serializable {
 
     public void setDefence(int defence) {
         this.defence = defence;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }

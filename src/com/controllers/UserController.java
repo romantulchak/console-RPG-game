@@ -4,6 +4,9 @@ import com.models.Hero;
 import com.models.Heroes.Archer;
 import com.models.Heroes.Mage;
 import com.models.Heroes.Warrior;
+import com.models.Inventory;
+import com.models.Item;
+import com.models.Items.Weapon;
 import com.models.User;
 
 import java.io.FileInputStream;
@@ -103,25 +106,33 @@ public class UserController {
         this.currentUser = currentUser;
     }
 
+    //TODO: створити додавання предметыв
     public void setUserHero(String name,int id, int heroId) {
         if (currentUser.getHeroes().size() < currentUser.getMaxHero()) {
             Hero hero = heroes.stream().filter(s->s.getId() == heroId).findFirst().orElse(null);
+            Inventory inventory = new Inventory(currentUser.getName()+name);
+            Item item = null;
             if (hero == null) {
                 switch (id) {
                     case 1:
-                        heroes.add(new Warrior(name, heroId));
+                        item = new Weapon("Silver Sword",8, 5);
+                        inventory.setItems(item);
+                        heroes.add(new Warrior(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
 
                     case 2:
-                        heroes.add(new Mage(name, heroId));
+                        item = new Weapon("Wooden Staff ",4, 2);
+                        inventory.setItems(item);
+                        heroes.add(new Mage(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
                     case 3:
-                        heroes.add(new Archer(name, heroId));
+                        item = new Weapon("Silver Bow",6, 5);
+                        inventory.setItems(item);
+                        heroes.add(new Archer(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
-
                 }
                 save();
             }else {
