@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Mage extends Hero implements Serializable  {
     public Mage(String name, int id, Inventory inventory){
+        super();
         this.setId(id);
         this.setMaxHealthPoints(80);
         this.setMaxManaPoints(80);
@@ -21,5 +22,6 @@ public class Mage extends Hero implements Serializable  {
         this.setAttackType(AttackType.MAGICAL_RANGE);
         this.setMoney(0);
         this.setInventory(inventory);
+        this.setMaxWeight(500);
     }
 }

@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Warrior extends Hero implements Serializable {
 
     public Warrior(String name, int id, Inventory inventory){
+        super();
         this.setId(id);
         this.setMaxHealthPoints(100);
         this.setMaxManaPoints(50);
@@ -22,6 +23,7 @@ public class Warrior extends Hero implements Serializable {
         this.setAttackType(AttackType.PHYSICAL);
         this.setMoney(0);
         this.setInventory(inventory);
+        this.setMaxWeight(500);
     }
 
 

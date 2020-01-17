@@ -4,6 +4,7 @@ import com.controllers.UserController;
 import com.models.EHeroes;
 import com.models.Hero;
 import com.models.Item;
+import com.models.Items.Weapon;
 import com.sun.istack.internal.NotNull;
 
 
@@ -164,18 +165,28 @@ public class Main {
         out.println("What do you want to do ?");
         out.println("1) Set item");
         out.println("2) Sell item");
+        out.println("3) Drop item");
         int id = input.nextInt();
         input.nextLine();
         switch (id){
             case 1:
-                //TODO: How to set an item?
+                userController.getItem(getIdForMethods());
                 break;
             case 2:
                 break;
+            case 3:
+                userController.dropItem(getIdForMethods());
+                break;
+
         }
 
     }
-
+    private static int getIdForMethods(){
+        out.println("Set id");
+        int newId = input.nextInt();
+        input.nextLine();
+        return newId;
+    }
     private static void createHero(@NotNull UserController userController) {
 
             out.println("Create your first hero");

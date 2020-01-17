@@ -10,6 +10,7 @@ public abstract class Item implements IBaseItem, Serializable {
     private String name;
     private int weight;
     private int price;
+    private boolean isDressed;
 
 
     public int getId() {
@@ -51,18 +52,18 @@ public abstract class Item implements IBaseItem, Serializable {
 
 
 
-    @Override
-    public void setItem(User user) {
 
-    }
-
-    @Override
-    public void dropItem(User user) {
-
-    }
 
     @Override
     public void takeOfItem() {
 
+    }
+
+    public boolean isDressed() {
+        return isDressed;
+    }
+
+    public void setDressed(boolean dressed) {
+        isDressed = dressed;
     }
 }

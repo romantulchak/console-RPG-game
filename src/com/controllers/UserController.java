@@ -70,7 +70,7 @@ public class UserController {
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))){
             oos.writeObject(users);
         }catch (Exception e){
-
+            System.out.println(e.getMessage());
         }
     }
     public void createUser(String name, String password){
@@ -115,20 +115,20 @@ public class UserController {
             if (hero == null) {
                 switch (id) {
                     case 1:
-                        item = new Weapon("Silver Sword",8, 5,0,130);
+                        item = new Weapon(1,"Silver Sword",8, 5,0,130);
                         inventory.setItems(item);
                         heroes.add(new Warrior(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
 
                     case 2:
-                        item = new Weapon("Wooden Staff ",4, 2, 0, 95);
+                        item = new Weapon(1,"Wooden Staff ",4, 2, 0, 95);
                         inventory.setItems(item);
                         heroes.add(new Mage(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
                     case 3:
-                        item = new Weapon("Silver Bow",6, 5, 0 , 110);
+                        item = new Weapon(1,"Silver Bow",6, 5, 0 , 110);
                         inventory.setItems(item);
                         heroes.add(new Archer(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
@@ -164,5 +164,25 @@ public class UserController {
 
     public void setCurrentHero(Hero currentHero) {
         this.currentHero = currentHero;
+    }
+
+    public void getItem(int newId) {
+        Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
+        if (item !=null) {
+            item.setItem(currentHero);
+            save();
+        }else {
+            System.out.println("Item not found");
+        }
+    }
+
+    public void dropItem(int newId) {
+        Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
+        if (item !=null) {
+            item.dropItem(currentHero);
+            save();
+        }else {
+            System.out.println("Item not found");
+        }
     }
 }
