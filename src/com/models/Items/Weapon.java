@@ -13,14 +13,11 @@ public class Weapon extends Item implements Serializable {
     private int averageAttack;
 
 
-    public Weapon(int id,String name, int maxAttack, int minAttack, int price, int weight) {
-        this.setId(id);
-        this.setName(name);
-        this.setPrice(price);
-        this.setWeight(weight);
+    public Weapon(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold, int maxAttack, int minAttack) {
+        super(id, name, weight, price, isDressed, canBeSold);
         this.maxAttack = maxAttack;
         this.minAttack = minAttack;
-        this.averageAttack = getAverageAttack();
+
     }
 
     public int getMaxAttack() {
@@ -55,20 +52,22 @@ public class Weapon extends Item implements Serializable {
 
     @Override
     public void info() {
-       System.out.printf("Id: %d, \t Name: %s \t Average attack: %d \n " +
+       System.out.printf("Id: %d, \t Name: %s \t Average attack: %d \n" +
                        "Min attack: %d - Max attack: %d \n" +
-                       "Is Dressed: %s \n",
+                       "Is Dressed: %s \t Can sell: %s \n",
                this.getId(),
                this.getName(),
                this.averageAttack,
                this.minAttack,
                this.maxAttack,
-               this.isDressed()
+               this.isDressed(),
+               this.isCanBeSold()
                );
     }
 
     @Override
     public void dropItem(Hero hero) {
+
         if (hero !=null){
             if (this.isDressed()){
                 hero.setAttackAmount(hero.getAttackAmount() - this.averageAttack);
@@ -78,4 +77,6 @@ public class Weapon extends Item implements Serializable {
             }
         }
     }
+
+
 }

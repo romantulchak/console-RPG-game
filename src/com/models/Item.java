@@ -11,7 +11,24 @@ public abstract class Item implements IBaseItem, Serializable {
     private int weight;
     private int price;
     private boolean isDressed;
+    private boolean canBeSold;
 
+    protected Item(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold) {
+        this.id = id;
+        this.name = name;
+        this.weight = weight;
+        this.price = price;
+        this.isDressed = isDressed;
+        this.canBeSold = canBeSold;
+    }
+
+    public boolean isCanBeSold() {
+        return canBeSold;
+    }
+
+    public void setCanBeSold(boolean canBeSold) {
+        this.canBeSold = canBeSold;
+    }
 
     public int getId() {
         return id;
@@ -55,7 +72,7 @@ public abstract class Item implements IBaseItem, Serializable {
 
 
     @Override
-    public void takeOfItem() {
+    public void takeOfItem(int id) {
 
     }
 
@@ -65,5 +82,20 @@ public abstract class Item implements IBaseItem, Serializable {
 
     public void setDressed(boolean dressed) {
         isDressed = dressed;
+    }
+
+    @Override
+    public void sellItem(Hero hero) {
+        if (hero !=null && !this.isDressed()){
+            if (canBeSold) {
+                hero.setMoney(hero.getMoney() + this.price);
+                hero.getInventory().getItems().remove(this);
+
+            }else {
+                System.out.println("Item cannot be sold");
+            }
+        }else {
+            System.out.println("Pls drop the item");
+        }
     }
 }

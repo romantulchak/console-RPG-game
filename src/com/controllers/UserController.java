@@ -6,6 +6,7 @@ import com.models.Heroes.Mage;
 import com.models.Heroes.Warrior;
 import com.models.Inventory;
 import com.models.Item;
+import com.models.Items.Armor;
 import com.models.Items.Weapon;
 import com.models.User;
 
@@ -112,23 +113,26 @@ public class UserController {
             Hero hero = heroes.stream().filter(s->s.getId() == heroId).findFirst().orElse(null);
             Inventory inventory = new Inventory(currentUser.getName()+name);
             Item item = null;
+            Item item2 = null;
             if (hero == null) {
                 switch (id) {
                     case 1:
-                        item = new Weapon(1,"Silver Sword",8, 5,0,130);
+                        item = new Weapon(1,"Silver Sword", 240, 0, false, false, 15, 12);
+                        item2 = new Armor(2, "Leather armor", 194, 15, false, true, 9, 6, 5, 3, 50, 0 );
                         inventory.setItems(item);
+                        inventory.setItems(item2);
                         heroes.add(new Warrior(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
 
                     case 2:
-                        item = new Weapon(1,"Wooden Staff ",4, 2, 0, 95);
+                        item = new Weapon(1,"Wooden Staff ",145, 0, false, false, 11, 9);
                         inventory.setItems(item);
                         heroes.add(new Mage(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
                         break;
                     case 3:
-                        item = new Weapon(1,"Silver Bow",6, 5, 0 , 110);
+                        item = new Weapon(1,"Silver Bow",194, 0, false, false, 19, 14);
                         inventory.setItems(item);
                         heroes.add(new Archer(name, heroId, inventory));
                         currentUser.setHeroes(heroes);
@@ -180,6 +184,16 @@ public class UserController {
         Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
         if (item !=null) {
             item.dropItem(currentHero);
+            save();
+        }else {
+            System.out.println("Item not found");
+        }
+    }
+
+    public void sellItem(int newId) {
+        Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
+        if (item !=null){
+            item.sellItem(currentHero);
             save();
         }else {
             System.out.println("Item not found");

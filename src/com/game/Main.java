@@ -121,6 +121,7 @@ public class Main {
         heroMenu(userController);
     }
 
+    //TODO: перевірка на то чи існує персонаж чи ні
     private static void heroMenu(UserController userController) {
 
         userController.getCurrentHero().info();
@@ -173,6 +174,7 @@ public class Main {
                 userController.getItem(getIdForMethods());
                 break;
             case 2:
+                userController.sellItem(getIdForMethods());
                 break;
             case 3:
                 userController.dropItem(getIdForMethods());

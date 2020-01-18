@@ -17,6 +17,8 @@ public class Archer extends Hero implements Serializable {
         this.setAttackAmount(9);
         this.setHealthPoints(90);
         this.setManaPoints(75);
+        this.setPhysicalArmor(6);
+        this.setMagicalArmor(5);
         this.setDefence(6);
         this.setName(name);
         this.setAttackType(AttackType.PHYSICAL);

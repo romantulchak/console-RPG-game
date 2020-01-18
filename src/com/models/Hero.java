@@ -24,7 +24,24 @@ public abstract class Hero implements IBaseClass, Serializable {
     private Inventory inventory;
     private int maxWeight;
     private int weight;
+    private int physicalArmor;
+    private int magicalArmor;
 
+    public int getPhysicalArmor() {
+        return physicalArmor;
+    }
+
+    public void setPhysicalArmor(int physicalArmor) {
+        this.physicalArmor = physicalArmor;
+    }
+
+    public int getMagicalArmor() {
+        return magicalArmor;
+    }
+
+    public void setMagicalArmor(int magicalArmor) {
+        this.magicalArmor = magicalArmor;
+    }
 
     protected Hero(){
         this.setWeight(0);
@@ -157,7 +174,8 @@ public abstract class Hero implements IBaseClass, Serializable {
     @Override
     public void info() {
         System.out.printf("Nickname: %s \t Level: %d \t Experience: %d \t Experience to up: %d \n" +
-                        "Health: %d \t Mana: %d \n Attack type: %s \t Attack: %d \n" +
+                        "Health: %d \t Mana: %d \nAttack type: %s \t Attack: %d \n" +
+                        "Physical armor: %d \t Magical armor: %d\t" +
                         "Money: %d \n " ,
                 this.name,
                 this.level,
@@ -167,6 +185,8 @@ public abstract class Hero implements IBaseClass, Serializable {
                 this.manaPoints,
                 this.attackType,
                 this.attackAmount,
+                this.physicalArmor,
+                this.magicalArmor,
                 this.money
                 );
 
