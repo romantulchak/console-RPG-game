@@ -167,6 +167,7 @@ public class Main {
         out.println("1) Set item");
         out.println("2) Sell item");
         out.println("3) Drop item");
+        out.println("4) Remove item");
         int id = input.nextInt();
         input.nextLine();
         switch (id){
@@ -179,6 +180,8 @@ public class Main {
             case 3:
                 userController.dropItem(getIdForMethods());
                 break;
+            case 4:
+                userController.removeItem(getIdForMethods());
 
         }
 

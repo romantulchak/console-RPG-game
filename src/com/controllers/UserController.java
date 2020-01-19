@@ -199,4 +199,15 @@ public class UserController {
             System.out.println("Item not found");
         }
     }
+
+    public void removeItem(int newId) {
+        Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId()==newId ).findFirst().orElse(null);
+        if (item !=null){
+            item.removeItem(currentHero);
+            save();
+        }else {
+            System.out.println("Item not found");
+        }
+
+    }
 }

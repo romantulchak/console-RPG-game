@@ -63,8 +63,10 @@ public abstract class Item implements IBaseItem, Serializable {
     }
 
     @Override
-    public void removeItem(User user) {
-
+    public void removeItem(Hero hero) {
+        if (hero != null){
+            hero.getInventory().getItems().remove(this);
+        }
     }
 
 
@@ -74,6 +76,17 @@ public abstract class Item implements IBaseItem, Serializable {
     @Override
     public void takeOfItem(int id) {
 
+    }
+
+    @Override
+    public void info() {
+        System.out.printf("Id: %d,\t Name: %s \n" +
+                        "Is Dress: %s \t Can be sell: %s",
+                this.id,
+                this.name,
+                this.isDressed,
+                this.canBeSold
+                );
     }
 
     public boolean isDressed() {
