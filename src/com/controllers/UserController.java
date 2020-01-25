@@ -1,14 +1,11 @@
 package com.controllers;
 
-import com.models.Hero;
+import com.models.*;
 import com.models.Heroes.Archer;
 import com.models.Heroes.Mage;
 import com.models.Heroes.Warrior;
-import com.models.Inventory;
-import com.models.Item;
 import com.models.Items.Armor;
 import com.models.Items.Weapon;
-import com.models.User;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,7 +26,6 @@ public class UserController {
     public boolean isFirstHero = true;
     public UserController(){
         users = getUsers();
-
         if (heroes == null){
             heroes = new ArrayList<Hero>();
         }else {
@@ -59,15 +55,13 @@ public class UserController {
 
     private ArrayList<User> getUsers(){
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
-
             return (ArrayList<User>) ois.readObject();
-
         }catch (Exception e){
             return new ArrayList<User>();
         }
     }
 
-    private void save(){
+    public void save(){
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))){
             oos.writeObject(users);
         }catch (Exception e){
@@ -114,6 +108,8 @@ public class UserController {
             Inventory inventory = new Inventory(currentUser.getName()+name);
             Item item = null;
             Item item2 = null;
+            Shop shop = new Shop();
+            shop.setItems(new ArrayList<Item>());
             if (hero == null) {
                 switch (id) {
                     case 1:
@@ -121,20 +117,26 @@ public class UserController {
                         item2 = new Armor(2, "Leather armor", 194, 15, false, true, 9, 6, 5, 3, 50, 0 );
                         inventory.setItems(item);
                         inventory.setItems(item2);
-                        heroes.add(new Warrior(name, heroId, inventory));
+                        Hero warrior = new Warrior(name, heroId, inventory);
+                        warrior.setShop(shop);
+                        heroes.add(warrior);
                         currentUser.setHeroes(heroes);
                         break;
 
                     case 2:
                         item = new Weapon(1,"Wooden Staff ",145, 0, false, false, 11, 9);
                         inventory.setItems(item);
-                        heroes.add(new Mage(name, heroId, inventory));
+                        Hero mag = new Mage(name, heroId, inventory);
+                        mag.setShop(shop);
+                        heroes.add(mag);
                         currentUser.setHeroes(heroes);
                         break;
                     case 3:
                         item = new Weapon(1,"Silver Bow",194, 0, false, false, 19, 14);
                         inventory.setItems(item);
-                        heroes.add(new Archer(name, heroId, inventory));
+                        Hero archer = new Archer(name, heroId, inventory);
+                        archer.setShop(shop);
+                        heroes.add(archer);
                         currentUser.setHeroes(heroes);
                         break;
                 }

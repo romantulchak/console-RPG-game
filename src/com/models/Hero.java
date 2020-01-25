@@ -26,6 +26,15 @@ public abstract class Hero implements IBaseClass, Serializable {
     private int weight;
     private int physicalArmor;
     private int magicalArmor;
+    private Shop shop;
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     public int getPhysicalArmor() {
         return physicalArmor;

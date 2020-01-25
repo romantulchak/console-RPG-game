@@ -1,5 +1,6 @@
 package com.game;
 
+import com.controllers.ShopController;
 import com.controllers.UserController;
 import com.models.EHeroes;
 import com.models.Hero;
@@ -147,6 +148,7 @@ public class Main {
                 case 4:
                     break;
                 case 5:
+                    shopMenu(userController);
                     break;
                 case 6:
                     break;
@@ -155,6 +157,13 @@ public class Main {
 
             }
 
+        }
+    }
+
+    private static void shopMenu(UserController userController) {
+        ShopController shopController = new ShopController(userController);
+        for (Item item : shopController.getCurrentHero().getShop().getItems()){
+            out.println(item.getName());
         }
     }
 

@@ -1,6 +1,8 @@
 package com.models;
 
-public abstract class Skill implements IBaseSkills {
+import java.io.Serializable;
+
+public abstract class Skill implements IBaseSkills, Serializable {
 
     private String name;
     private boolean isRecharge;

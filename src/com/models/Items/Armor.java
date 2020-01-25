@@ -3,7 +3,9 @@ package com.models.Items;
 import com.models.Hero;
 import com.models.Item;
 
-public class Armor extends Item {
+import java.io.Serializable;
+
+public class Armor extends Item implements Serializable {
 
     private int healthPoints;
     private int manaPoints;
