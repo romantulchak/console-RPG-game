@@ -1,10 +1,9 @@
 package com.game;
 
+import com.controllers.BattleController;
 import com.controllers.ShopController;
 import com.controllers.UserController;
-import com.models.EHeroes;
-import com.models.Hero;
-import com.models.Item;
+import com.models.*;
 import com.models.Items.Weapon;
 import com.sun.istack.internal.NotNull;
 
@@ -107,9 +106,6 @@ public class Main {
                     hero.getAttackAmount()
                     );
         }
-
-
-
     }
 
 
@@ -146,6 +142,7 @@ public class Main {
                 case 3:
                     break;
                 case 4:
+                    battleMenu(userController);
                     break;
                 case 5:
                     shopMenu(userController);
@@ -160,9 +157,95 @@ public class Main {
         }
     }
 
+    private static void battleMenu(UserController userController) {
+        out.println("1) Show all bosses");
+        out.println("2) Battle with boss");
+        int id = input.nextInt();
+        switch (id){
+            case 1:
+                allBosses(userController);
+                break;
+            case 2:
+                battle(userController);
+                break;
+        }
+    }
+
+    private static void battle(UserController userController) {
+        out.println("Chose boss");
+        for (Boss boss: userController.getCurrentHero().getBosses()
+             ) {
+            out.println(boss.getId());
+            out.println(boss.getName());
+
+        }
+
+        int bossId = input.nextInt();
+        Boss boss = userController.boss(bossId);
+
+
+        BattleController battleController = new BattleController(userController.getCurrentHero(), boss);
+        battleController.battle();
+        while (!battleController.isEnd()){
+            out.println("1) Attack");
+            out.println("2) Use Skill");
+            out.println("3) Heal");
+
+            int id = input.nextInt();
+            switch (id){
+                case 1:
+                   battleController.attack();
+                    break;
+                case 2:
+                    useSkill(battleController);
+                    break;
+                case 3:
+                    heal(battleController);
+                    break;
+            }
+            battleController.battle();
+        }
+
+
+    }
+    private static void heal(BattleController battleController){
+
+    }
+
+    private static void useSkill(BattleController battleController) {
+    }
+
+    private static void attack(BattleController battleController) {
+    }
+
+    private static void allBosses(UserController userController) {
+        for (Boss boss : userController.getCurrentHero().getBosses()){
+            boss.info();
+        }
+    }
+
     private static void shopMenu(UserController userController) {
+
+        out.println("1) Shop information");
+        out.println("2) Buy item");
+
         ShopController shopController = new ShopController(userController);
+        int id = input.nextInt();
+        switch (id){
+            case 1:
+                shopInformation(userController,shopController);
+                break;
+            case 2:
+                shopController.buyItem(getIdForMethods());
+                break;
+        }
+    }
+
+
+    private static void shopInformation(UserController userController, ShopController shopController) {
+
         for (Item item : shopController.getCurrentHero().getShop().getItems()){
+            out.println(item.getId());
             out.println(item.getName());
         }
     }
@@ -191,9 +274,7 @@ public class Main {
                 break;
             case 4:
                 userController.removeItem(getIdForMethods());
-
         }
-
     }
     private static int getIdForMethods(){
         out.println("Set id");

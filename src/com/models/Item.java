@@ -68,11 +68,6 @@ public abstract class Item implements IBaseItem, Serializable {
             hero.getInventory().getItems().remove(this);
         }
     }
-
-
-
-
-
     @Override
     public void takeOfItem(int id) {
 

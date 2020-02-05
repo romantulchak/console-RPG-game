@@ -39,4 +39,16 @@ public class Shop implements Serializable {
     public void setHeroName(String heroName) {
         this.heroName = heroName;
     }
+    public void buyItem(Hero hero, int id){
+        Item item = items.stream().filter(s->s.getId() == id).findFirst().orElse(null);
+        if (item !=null) {
+            if (hero.getMoney() > item.getPrice()) {
+                this.getItems().remove(item);
+                hero.setMoney(hero.getMoney() - item.getPrice());
+                hero.getInventory().setItems(item);
+            }
+        }else {
+            System.out.println("Do not enough money");
+        }
+    }
 }

@@ -22,7 +22,7 @@ public class Mage extends Hero implements Serializable  {
         this.setName(name);
         this.setDefence(4);
         this.setAttackType(AttackType.MAGICAL_RANGE);
-        this.setMoney(0);
+        this.setMoney(500);
         this.setInventory(inventory);
         this.setMaxWeight(500);
     }

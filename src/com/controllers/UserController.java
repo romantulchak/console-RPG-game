@@ -1,6 +1,8 @@
 package com.controllers;
 
 import com.models.*;
+import com.models.Enemies.Diablo;
+import com.models.Enemies.MiraEamon;
 import com.models.Heroes.Archer;
 import com.models.Heroes.Mage;
 import com.models.Heroes.Warrior;
@@ -12,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserController {
 
@@ -109,6 +112,11 @@ public class UserController {
             Item item = null;
             Item item2 = null;
             Shop shop = new Shop();
+            Boss boss = new Diablo();
+            Boss boss1 = new MiraEamon();
+            List<Boss> bosses = new ArrayList<>();
+            bosses.add(boss);
+            bosses.add(boss1);
             shop.setItems(new ArrayList<Item>());
             if (hero == null) {
                 switch (id) {
@@ -119,6 +127,7 @@ public class UserController {
                         inventory.setItems(item2);
                         Hero warrior = new Warrior(name, heroId, inventory);
                         warrior.setShop(shop);
+                        warrior.setBoss(bosses);
                         heroes.add(warrior);
                         currentUser.setHeroes(heroes);
                         break;
@@ -128,6 +137,7 @@ public class UserController {
                         inventory.setItems(item);
                         Hero mag = new Mage(name, heroId, inventory);
                         mag.setShop(shop);
+                        mag.setBoss(bosses);
                         heroes.add(mag);
                         currentUser.setHeroes(heroes);
                         break;
@@ -136,6 +146,7 @@ public class UserController {
                         inventory.setItems(item);
                         Hero archer = new Archer(name, heroId, inventory);
                         archer.setShop(shop);
+                        archer.setBoss(bosses);
                         heroes.add(archer);
                         currentUser.setHeroes(heroes);
                         break;
@@ -211,5 +222,10 @@ public class UserController {
             System.out.println("Item not found");
         }
 
+    }
+
+    //TODO: перевірка на null
+    public Boss boss(int bossId) {
+        return currentHero.getBosses().stream().filter(b->b.getId()==bossId).findFirst().orElse(null);
     }
 }

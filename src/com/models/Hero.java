@@ -3,9 +3,11 @@ package com.models;
 import com.models.Heroes.AttackType;
 
 import java.io.Serializable;
+import java.util.List;
 
 public abstract class Hero implements IBaseClass, Serializable {
 
+//TODO: Додати критичний урон
 
     private int id;
     private int healthPoints;
@@ -27,6 +29,16 @@ public abstract class Hero implements IBaseClass, Serializable {
     private int physicalArmor;
     private int magicalArmor;
     private Shop shop;
+
+    public List<Boss> getBosses() {
+        return boss;
+    }
+
+    public void setBoss(List<Boss> boss) {
+        this.boss = boss;
+    }
+
+    private List<Boss> boss;
 
     public Shop getShop() {
         return shop;

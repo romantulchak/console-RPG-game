@@ -105,6 +105,7 @@ public class Armor extends Item implements Serializable {
             hero.setMaxManaPoints(hero.getMaxManaPoints() + this.manaPoints);
             hero.setManaPoints(hero.getManaPoints() + this.manaPoints);
             this.setDressed(true);
+            System.out.printf("Was set: %s", this.getName() + "\n");
         }
     }
 

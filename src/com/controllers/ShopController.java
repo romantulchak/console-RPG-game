@@ -81,6 +81,10 @@ public class ShopController {
         }
     }
 
+    public void buyItem(int id){
+        currentHero.getShop().buyItem(currentHero, id);
+        save();
+    }
 
 
     public void setShops(List<Shop> shops) {
@@ -106,4 +110,7 @@ public class ShopController {
     public void setCurrentHero(Hero currentHero) {
         this.currentHero = currentHero;
     }
+
+
+
 }

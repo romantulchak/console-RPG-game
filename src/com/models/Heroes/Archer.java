@@ -22,7 +22,7 @@ public class Archer extends Hero implements Serializable {
         this.setDefence(6);
         this.setName(name);
         this.setAttackType(AttackType.PHYSICAL);
-        this.setMoney(0);
+        this.setMoney(500);
         this.setInventory(inventory);
         this.setMaxWeight(500);
 

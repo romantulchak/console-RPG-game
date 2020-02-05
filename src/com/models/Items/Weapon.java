@@ -46,7 +46,7 @@ public class Weapon extends Item implements Serializable {
         if (hero != null){
             hero.setAttackAmount(hero.getAttackAmount() + this.getAverageAttack());
             this.setDressed(true);
-
+            System.out.printf("Was set: %s", this.getName() + "\n");
         }
     }
 
@@ -76,6 +76,7 @@ public class Weapon extends Item implements Serializable {
                 System.out.println("The item has not been set");
             }
         }
+
     }
 
 
