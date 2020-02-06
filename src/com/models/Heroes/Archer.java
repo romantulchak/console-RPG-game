@@ -25,6 +25,11 @@ public class Archer extends Hero implements Serializable {
         this.setMoney(500);
         this.setInventory(inventory);
         this.setMaxWeight(500);
+        this.setCriticalChance(0.132);
+        this.setCriticalHit(1.75);
+
+        this.setWin(0);
+        this.setLose(0);
 
     }
 

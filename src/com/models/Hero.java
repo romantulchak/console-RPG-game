@@ -28,7 +28,52 @@ public abstract class Hero implements IBaseClass, Serializable {
     private int weight;
     private int physicalArmor;
     private int magicalArmor;
+    private double criticalChance;
+    private double criticalHit;
     private Shop shop;
+    private int win;
+    private int lose;
+
+
+
+
+
+
+
+
+
+    public void setCriticalHit(double criticalHit){
+        this.criticalHit = criticalHit;
+    }
+    public double getCriticalHit(){
+        return this.criticalHit;
+    }
+
+    public void setCriticalChance(double criticalChance){
+        this.criticalChance = criticalChance;
+    }
+    public double getCriticalChance(){
+        return criticalChance;
+    }
+
+
+
+
+    public int getWin() {
+        return win;
+    }
+
+    public void setWin(int win) {
+        this.win = win;
+    }
+
+    public int getLose() {
+        return lose;
+    }
+
+    public void setLose(int lose) {
+        this.lose = lose;
+    }
 
     public List<Boss> getBosses() {
         return boss;
@@ -196,7 +241,9 @@ public abstract class Hero implements IBaseClass, Serializable {
     public void info() {
         System.out.printf("Nickname: %s \t Level: %d \t Experience: %d \t Experience to up: %d \n" +
                         "Health: %d \t Mana: %d \nAttack type: %s \t Attack: %d \n" +
-                        "Physical armor: %d \t Magical armor: %d\t" +
+                        "Physical armor: %d \t Magical armor: %d\n" +
+                        "Critical chance: %.2f \t Critical hit: %.2f \n" +
+                        "Win: %d \t Lose: %d \n" +
                         "Money: %d \n " ,
                 this.name,
                 this.level,
@@ -208,6 +255,10 @@ public abstract class Hero implements IBaseClass, Serializable {
                 this.attackAmount,
                 this.physicalArmor,
                 this.magicalArmor,
+                this.criticalChance,
+                this.criticalHit,
+                this.win,
+                this.lose,
                 this.money
                 );
 

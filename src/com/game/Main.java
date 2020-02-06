@@ -184,7 +184,7 @@ public class Main {
         Boss boss = userController.boss(bossId);
 
 
-        BattleController battleController = new BattleController(userController.getCurrentHero(), boss);
+        BattleController battleController = new BattleController(userController,userController.getCurrentHero(), boss);
         battleController.battle();
         while (!battleController.isEnd()){
             out.println("1) Attack");

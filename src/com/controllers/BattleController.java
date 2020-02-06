@@ -8,14 +8,16 @@ public class BattleController {
 
     private Hero currentHero;
     private Boss currentBoss;
+    private UserController userController;
     private double heroHp;
     private double bossHp;
     private boolean isEnd = false;
     private boolean bossWin;
     private boolean heroWin;
-    public BattleController(Hero currentHero, Boss currentBoss){
+    public BattleController(UserController userController,Hero currentHero, Boss currentBoss){
         this.currentHero = currentHero;
         this.currentBoss = currentBoss;
+        this.userController = userController;
         heroHp = currentHero.getHealthPoints() + (currentHero.getPhysicalArmor()*0.1);
         bossHp = currentBoss.getHealthPoints() + (currentBoss.getPhysicalArmor()*0.1);
     }
@@ -56,9 +58,12 @@ public class BattleController {
         if (isEnd){
             if (heroHp<=0){
                 bossWin =true;
+                userController.getCurrentHero().setLose(currentHero.getLose()+1);
             }else {
+                userController.getCurrentHero().setWin(currentHero.getWin() + 1);
                 heroWin = true;
             }
+            userController.save();
         }
 
 

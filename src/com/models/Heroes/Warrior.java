@@ -26,6 +26,10 @@ public class Warrior extends Hero implements Serializable {
         this.setMoney(500);
         this.setInventory(inventory);
         this.setMaxWeight(500);
+        this.setCriticalChance(0.12);
+        this.setCriticalHit(2.25);
+        this.setWin(0);
+        this.setLose(0);
     }
 
 
