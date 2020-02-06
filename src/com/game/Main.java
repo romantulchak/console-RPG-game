@@ -114,8 +114,12 @@ public class Main {
         out.println("Pls set id");
         int id = input.nextInt();
         input.nextLine();
-        userController.chooseHero(id);
-        heroMenu(userController);
+        Hero hero = userController.chooseHero(id);
+        if (hero !=null) {
+            heroMenu(userController);
+        }else {
+            out.println("Hero not found");
+        }
     }
 
     //TODO: перевірка на то чи існує персонаж чи ні
@@ -182,30 +186,31 @@ public class Main {
 
         int bossId = input.nextInt();
         Boss boss = userController.boss(bossId);
-
-
-        BattleController battleController = new BattleController(userController,userController.getCurrentHero(), boss);
-        battleController.battle();
-        while (!battleController.isEnd()){
-            out.println("1) Attack");
-            out.println("2) Use Skill");
-            out.println("3) Heal");
-
-            int id = input.nextInt();
-            switch (id){
-                case 1:
-                   battleController.attack();
-                    break;
-                case 2:
-                    useSkill(battleController);
-                    break;
-                case 3:
-                    heal(battleController);
-                    break;
-            }
+        if (userController.isSuccess) {
+            BattleController battleController = new BattleController(userController, userController.getCurrentHero(), boss);
             battleController.battle();
-        }
+            while (!battleController.isEnd()) {
+                out.println("1) Attack");
+                out.println("2) Use Skill");
+                out.println("3) Heal");
 
+                int id = input.nextInt();
+                switch (id) {
+                    case 1:
+                        battleController.attack();
+                        break;
+                    case 2:
+                        useSkill(battleController);
+                        break;
+                    case 3:
+                        heal(battleController);
+                        break;
+                }
+                battleController.battle();
+            }
+        }else {
+            out.println("Boss not found");
+        }
 
     }
     private static void heal(BattleController battleController){

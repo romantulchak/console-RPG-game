@@ -8,7 +8,6 @@ import com.models.Heroes.Mage;
 import com.models.Heroes.Warrior;
 import com.models.Items.Armor;
 import com.models.Items.Weapon;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -30,7 +29,7 @@ public class UserController {
     public UserController(){
         users = getUsers();
         if (heroes == null){
-            heroes = new ArrayList<Hero>();
+            heroes = new ArrayList<>();
         }else {
             heroes = currentUser.getHeroes();
         }
@@ -47,7 +46,7 @@ public class UserController {
             if (currentUser.getHeroes() != null){
                 isFirstHero = false;
             }else {
-                currentUser.setHeroes(new ArrayList<Hero>());
+                currentUser.setHeroes(new ArrayList<>());
             }
             heroes = currentUser.getHeroes();
             isSuccess = true;
@@ -55,12 +54,12 @@ public class UserController {
 
     }
 
-
+    @SuppressWarnings("unchecked")
     private ArrayList<User> getUsers(){
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             return (ArrayList<User>) ois.readObject();
         }catch (Exception e){
-            return new ArrayList<User>();
+            return new ArrayList<>();
         }
     }
 
@@ -75,7 +74,7 @@ public class UserController {
         User userToFind = users.stream().filter(x->x.getName().equals(name)).findFirst().orElse(null);
         if (userToFind == null) {
             User user = new User(name, password);
-            user.setHeroes(new ArrayList<Hero>());
+            user.setHeroes(new ArrayList<>());
             users.add(user);
             save();
             isSuccess = true;
@@ -86,38 +85,37 @@ public class UserController {
 
     }
 
-    public void chooseHero(int id){
+    public Hero chooseHero(int id){
         Hero hero = heroes.stream().filter(x->x.getId() == id).findFirst().orElse(null);
         if (hero !=null){
             currentHero = hero;
+            isSuccess = true;
+            return currentHero;
+        }else {
+            isSuccess = false;
+            return null;
         }
     }
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
-    }
+
 
     public User getCurrentUser() {
         return currentUser;
     }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
 
     //TODO: створити додавання предметыв
     public void setUserHero(String name,int id, int heroId) {
         if (currentUser.getHeroes().size() < currentUser.getMaxHero()) {
             Hero hero = heroes.stream().filter(s->s.getId() == heroId).findFirst().orElse(null);
             Inventory inventory = new Inventory(currentUser.getName()+name);
-            Item item = null;
-            Item item2 = null;
+            Item item,item2;
             Shop shop = new Shop();
             Boss boss = new Diablo();
             Boss boss1 = new MiraEamon();
             List<Boss> bosses = new ArrayList<>();
             bosses.add(boss);
             bosses.add(boss1);
-            shop.setItems(new ArrayList<Item>());
+            shop.setItems(new ArrayList<>());
             if (hero == null) {
                 switch (id) {
                     case 1:
@@ -179,9 +177,7 @@ public class UserController {
         return currentHero;
     }
 
-    public void setCurrentHero(Hero currentHero) {
-        this.currentHero = currentHero;
-    }
+
 
     public void getItem(int newId) {
         Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
@@ -224,8 +220,14 @@ public class UserController {
 
     }
 
-    //TODO: перевірка на null
     public Boss boss(int bossId) {
-        return currentHero.getBosses().stream().filter(b->b.getId()==bossId).findFirst().orElse(null);
+        Boss boss = currentHero.getBosses().stream().filter(b->b.getId()==bossId).findFirst().orElse(null);
+        if (boss !=null){
+            isSuccess =true;
+            return boss;
+        }else {
+            isSuccess = false;
+            return null;
+        }
     }
 }

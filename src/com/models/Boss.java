@@ -48,25 +48,8 @@ public abstract class Boss  extends Hero {
         super.setWeight(weight);
     }
 
-    @Override
-    public int getExperience() {
-        return super.getExperience();
-    }
 
-    @Override
-    public void setExperience(int experience) {
-        super.setExperience(experience);
-    }
 
-    @Override
-    public int getExperienceToUp() {
-        return super.getExperienceToUp();
-    }
-
-    @Override
-    public void setExperienceToUp(int experienceToUp) {
-        super.setExperienceToUp(experienceToUp);
-    }
 
     @Override
     public String getName() {
@@ -173,10 +156,7 @@ public abstract class Boss  extends Hero {
         super.loseMana(amount);
     }
 
-    @Override
-    public void levelUp() {
-        super.levelUp();
-    }
+
 
     @Override
     public void info() {

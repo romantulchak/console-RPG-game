@@ -14,12 +14,14 @@ public class Diablo extends Boss {
         setHealthPoints(200);
         setManaPoints(500);
         setMaxWeight(5000);
-        setAttackAmount(1);
+        setAttackAmount(12);
         setPhysicalArmor(65);
         setMoney(300);
         setAttackType(AttackType.PHYSICAL);
         setMagicalArmor(30);
-        setExperience(500);
+        setExperience(250);
+        setCriticalChance(0.1);
+        setCriticalHit(2);
         setLevel(50);
     }
 }

@@ -17,8 +17,8 @@ public abstract class Hero implements IBaseClass, Serializable {
     private int defence;
     private int maxHealthPoints;
     private int maxManaPoints;
-    private int experience;
-    private int experienceToUp = 50;
+    private double experience;
+    private double experienceToUp = 50;
     private String profession;
     private String name;
     private AttackType attackType;
@@ -52,12 +52,10 @@ public abstract class Hero implements IBaseClass, Serializable {
     public void setCriticalChance(double criticalChance){
         this.criticalChance = criticalChance;
     }
+
     public double getCriticalChance(){
         return criticalChance;
     }
-
-
-
 
     public int getWin() {
         return win;
@@ -121,20 +119,20 @@ public abstract class Hero implements IBaseClass, Serializable {
         this.weight = weight;
     }
 
-    public int getExperience() {
+    public double getExperience() {
         return experience;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(double experience) {
         if (experience < 0)this.experience = 0;
         else this.experience = experience;
     }
 
-    public int getExperienceToUp() {
+    public double getExperienceToUp() {
         return experienceToUp;
     }
 
-    public void setExperienceToUp(int experienceToUp) {
+    public void setExperienceToUp(double experienceToUp) {
         if (experienceToUp < 0) this.experienceToUp =0;
         else this.experienceToUp = experienceToUp;
     }
@@ -232,14 +230,28 @@ public abstract class Hero implements IBaseClass, Serializable {
         setManaPoints(this.manaPoints - amount);
     }
 
-    @Override
-    public void levelUp() {
 
+    //TODO: придумати як піднімати рівень
+    @Override
+    public void levelUp(double exp) {
+
+        if (exp >= experienceToUp) {
+            this.setLevel(this.getLevel() + 1);
+            this.setExperience(this.experience + exp);
+            double remainderOfExp = exp - experienceToUp;
+
+            while (remainderOfExp > experienceToUp){
+                this.setExperienceToUp(this.experienceToUp + (this.experienceToUp * 1.2));
+                this.setLevel(this.getLevel() + 1);
+                remainderOfExp -= experienceToUp;
+                this.setExperienceToUp(this.experienceToUp % remainderOfExp);
+            }
+        }
     }
 
     @Override
     public void info() {
-        System.out.printf("Nickname: %s \t Level: %d \t Experience: %d \t Experience to up: %d \n" +
+        System.out.printf("Nickname: %s \t Level: %d \t Experience: %.1f \t Experience to up: %.1f \n" +
                         "Health: %d \t Mana: %d \nAttack type: %s \t Attack: %d \n" +
                         "Physical armor: %d \t Magical armor: %d\n" +
                         "Critical chance: %.2f \t Critical hit: %.2f \n" +

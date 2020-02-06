@@ -4,6 +4,8 @@ import com.models.Boss;
 import com.models.Hero;
 import com.models.User;
 
+import java.util.Random;
+
 public class BattleController {
 
     private Hero currentHero;
@@ -46,9 +48,21 @@ public class BattleController {
 
     public void attack() {
 
+        double heroCritical = Math.random();
+        double bossCritical = Math.random();
+        if (currentHero.getCriticalChance() > heroCritical){
+            System.out.println("Hero critical hit");
+            bossHp -= currentHero.getAttackAmount() * currentHero.getCriticalHit();
+        }else {
+            bossHp -= currentHero.getAttackAmount();
+        }
 
-        heroHp -= currentBoss.getAttackAmount();
-        bossHp -= currentHero.getAttackAmount();
+        if (currentBoss.getCriticalChance() > bossCritical){
+            System.out.println("Boss critical hit");
+            heroHp -= currentBoss.getAttackAmount()*currentBoss.getCriticalHit();
+        }else {
+            heroHp -= currentBoss.getAttackAmount();
+        }
         if (heroHp <= 0) {
             isEnd = true;
         }
@@ -62,6 +76,7 @@ public class BattleController {
             }else {
                 userController.getCurrentHero().setWin(currentHero.getWin() + 1);
                 heroWin = true;
+                userController.getCurrentHero().levelUp(currentBoss.getExperience());
             }
             userController.save();
         }

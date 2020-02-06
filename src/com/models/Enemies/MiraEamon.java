@@ -18,6 +18,8 @@ public class MiraEamon extends Boss {
         setAttackType(AttackType.PHYSICAL);
         setMagicalArmor(120);
         setExperience(5000);
+        setCriticalChance(0.3);
+        setCriticalHit(2.55);
         setLevel(150);
     }
 }
