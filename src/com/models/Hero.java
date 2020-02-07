@@ -10,12 +10,12 @@ public abstract class Hero implements IBaseClass, Serializable {
 //TODO: Додати критичний урон
 
     private int id;
-    private int healthPoints;
+    private double healthPoints;
     private int manaPoints;
     private int level;
     private int attackAmount;
     private int defence;
-    private int maxHealthPoints;
+    private double maxHealthPoints;
     private int maxManaPoints;
     private double experience;
     private double experienceToUp = 50;
@@ -151,11 +151,11 @@ public abstract class Hero implements IBaseClass, Serializable {
         this.name = name;
     }
 
-    public int getHealthPoints() {
+    public double getHealthPoints() {
         return healthPoints;
     }
 
-    public void setHealthPoints(int healthPoints) {
+    public void setHealthPoints(double healthPoints) {
         if (healthPoints<0) this.healthPoints = 0;
         else if(healthPoints > this.maxHealthPoints) this.healthPoints=this.maxHealthPoints;
         else this.healthPoints = healthPoints;
@@ -189,11 +189,11 @@ public abstract class Hero implements IBaseClass, Serializable {
         this.attackAmount = attackAmount;
     }
 
-    public int getMaxHealthPoints() {
+    public double getMaxHealthPoints() {
         return maxHealthPoints;
     }
 
-    public void setMaxHealthPoints(int maxHealthPoints) {
+    public void setMaxHealthPoints(double maxHealthPoints) {
         this.maxHealthPoints = maxHealthPoints;
     }
 
@@ -252,7 +252,7 @@ public abstract class Hero implements IBaseClass, Serializable {
     @Override
     public void info() {
         System.out.printf("Nickname: %s \t Level: %d \t Experience: %.1f \t Experience to up: %.1f \n" +
-                        "Health: %d \t Mana: %d \nAttack type: %s \t Attack: %d \n" +
+                        "Health: %.1f \t Mana: %d \nAttack type: %s \t Attack: %d \n" +
                         "Physical armor: %d \t Magical armor: %d\n" +
                         "Critical chance: %.2f \t Critical hit: %.2f \n" +
                         "Win: %d \t Lose: %d \n" +

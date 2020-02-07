@@ -38,12 +38,12 @@ public class ShopController {
 
     private void addDefaultItems(UserController userController) {
 
-        Item item = new Weapon(6, "Test Weapon1", 500, 235, false, true, 20, 15);
-        Item item1 = new Weapon(7, "Test Weapon1", 500, 235, false, true, 20, 15);
-        Item item2 = new Weapon(8, "Test Weapon1", 500, 235, false, true, 20, 15);
-        Item item11 = new Armor(6, "Test Armor2", 500, 200, false, true, 15, 10, 9, 6, 0, 0);
-        Item item22 = new Armor(6, "Test Armor2", 500, 200, false, true, 15, 10, 9, 6, 0, 0);
-        Item item33 = new Armor(6, "Test Armor2", 500, 200, false, true, 15, 10, 9, 6, 0, 0);
+        Item item = new Weapon(6, "Test Weapon1", 500, 235, false, true, true,20, 15);
+        Item item1 = new Weapon(7, "Test Weapon1", 500, 235, false, true, true,20, 15);
+        Item item2 = new Weapon(8, "Test Weapon1", 500, 235, false, true, true,20, 15);
+        Item item11 = new Armor(6, "Test Armor2", 500, 200, false, true, true,15, 10, 9, 6, 0, 0);
+        Item item22 = new Armor(6, "Test Armor2", 500, 200, false, true, true,15, 10, 9, 6, 0, 0);
+        Item item33 = new Armor(6, "Test Armor2", 500, 200, false, true, true,15, 10, 9, 6, 0, 0);
         List<Item> itemsToAdd = new ArrayList<>();
         itemsToAdd.add(item);
         itemsToAdd.add(item1);

@@ -4,11 +4,16 @@ import com.controllers.BattleController;
 import com.controllers.ShopController;
 import com.controllers.UserController;
 import com.models.*;
+import com.models.Items.HealLevelOne;
 import com.models.Items.Weapon;
 import com.sun.istack.internal.NotNull;
 
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.lang.System.*;
 
@@ -188,7 +193,7 @@ public class Main {
         Boss boss = userController.boss(bossId);
         if (userController.isSuccess) {
             BattleController battleController = new BattleController(userController, userController.getCurrentHero(), boss);
-            battleController.battle();
+            battleController.battleInfo();
             while (!battleController.isEnd()) {
                 out.println("1) Attack");
                 out.println("2) Use Skill");
@@ -203,16 +208,36 @@ public class Main {
                         useSkill(battleController);
                         break;
                     case 3:
-                        heal(battleController);
+                        Stream<Integer> integerStream = Stream.of(-3,-2,-1,0,1,2,3);
+
+                        List<Item> healLevelOnes = userController.getCurrentHero().getInventory().getItems().stream().filter(s->s.getClass() == HealLevelOne.class).collect(Collectors.toList());
+                        Item item1 = null;
+                        if (healLevelOnes.size() ==0) {
+                            out.println("Not item");
+                        }else {
+                            for (Item item : healLevelOnes) {
+                                HealLevelOne healLevelOne = (HealLevelOne) item;
+                                out.println(item.getId());
+                                out.println(item.getName());
+                                out.println(healLevelOne.getHealToRegenerate());
+                                item1 = findItem(userController,getIdForMethods());
+                                battleController.heal(item1);
+                            }
+                        }
                         break;
                 }
-                battleController.battle();
+                battleController.battleInfo();
             }
         }else {
             out.println("Boss not found");
         }
 
     }
+
+    private static HealLevelOne findItem(UserController userController, int itemId) {
+        return userController.useHeal(itemId);
+    }
+
     private static void heal(BattleController battleController){
 
     }

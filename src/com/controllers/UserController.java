@@ -7,6 +7,7 @@ import com.models.Heroes.Archer;
 import com.models.Heroes.Mage;
 import com.models.Heroes.Warrior;
 import com.models.Items.Armor;
+import com.models.Items.HealLevelOne;
 import com.models.Items.Weapon;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -108,7 +109,8 @@ public class UserController {
         if (currentUser.getHeroes().size() < currentUser.getMaxHero()) {
             Hero hero = heroes.stream().filter(s->s.getId() == heroId).findFirst().orElse(null);
             Inventory inventory = new Inventory(currentUser.getName()+name);
-            Item item,item2;
+            Item item,item2, item3;
+            item3 = new HealLevelOne(3, "Heal Level 1", 25, 0, false, false,false, 50);
             Shop shop = new Shop();
             Boss boss = new Diablo();
             Boss boss1 = new MiraEamon();
@@ -119,10 +121,11 @@ public class UserController {
             if (hero == null) {
                 switch (id) {
                     case 1:
-                        item = new Weapon(1,"Silver Sword", 240, 0, false, false, 15, 12);
-                        item2 = new Armor(2, "Leather armor", 194, 15, false, true, 9, 6, 5, 3, 50, 0 );
+                        item = new Weapon(1,"Silver Sword", 240, 0, false, false, true,15, 12);
+                        item2 = new Armor(2, "Leather armor", 194, 15, false, true, true,9, 6, 5, 3, 50, 0 );
                         inventory.setItems(item);
                         inventory.setItems(item2);
+                        inventory.setItems(item3);
                         Hero warrior = new Warrior(name, heroId, inventory);
                         warrior.setShop(shop);
                         warrior.setBoss(bosses);
@@ -131,8 +134,9 @@ public class UserController {
                         break;
 
                     case 2:
-                        item = new Weapon(1,"Wooden Staff ",145, 0, false, false, 11, 9);
+                        item = new Weapon(1,"Wooden Staff ",145, 0, false, false,true, 11, 9);
                         inventory.setItems(item);
+                        inventory.setItems(item3);
                         Hero mag = new Mage(name, heroId, inventory);
                         mag.setShop(shop);
                         mag.setBoss(bosses);
@@ -140,8 +144,9 @@ public class UserController {
                         currentUser.setHeroes(heroes);
                         break;
                     case 3:
-                        item = new Weapon(1,"Silver Bow",194, 0, false, false, 19, 14);
+                        item = new Weapon(1,"Silver Bow",194, 0, false, false, true,19, 14);
                         inventory.setItems(item);
+                        inventory.setItems(item3);
                         Hero archer = new Archer(name, heroId, inventory);
                         archer.setShop(shop);
                         archer.setBoss(bosses);
@@ -181,12 +186,21 @@ public class UserController {
 
     public void getItem(int newId) {
         Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
-        if (item !=null) {
+        if (item !=null && item.isCanBeDressed()) {
             item.setItem(currentHero);
             save();
         }else {
-            System.out.println("Item not found");
+            System.out.println("Item not found or item cannot be dressed");
         }
+    }
+    public HealLevelOne useHeal(int newId){
+        Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId()==newId && s.getClass() == HealLevelOne.class).findAny().orElse(null);
+        if (item !=null && item.getClass() == HealLevelOne.class){
+            return (HealLevelOne) item;
+        }else {
+            System.out.println("Item not found or item isn't a heal");
+        }
+        return null;
     }
 
     public void dropItem(int newId) {

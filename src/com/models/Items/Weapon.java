@@ -13,8 +13,8 @@ public class Weapon extends Item implements Serializable {
     private int averageAttack;
 
 
-    public Weapon(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold, int maxAttack, int minAttack) {
-        super(id, name, weight, price, isDressed, canBeSold);
+    public Weapon(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold,boolean canBeDressed, int maxAttack, int minAttack) {
+        super(id, name, weight, price, isDressed, canBeSold,canBeDressed);
         this.maxAttack = maxAttack;
         this.minAttack = minAttack;
 

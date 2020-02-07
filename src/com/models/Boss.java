@@ -72,12 +72,12 @@ public abstract class Boss  extends Hero {
     }
 
     @Override
-    public int getHealthPoints() {
+    public double getHealthPoints() {
         return super.getHealthPoints();
     }
 
     @Override
-    public void setHealthPoints(int healthPoints) {
+    public void setHealthPoints(double healthPoints) {
         super.setHealthPoints(healthPoints);
     }
 
@@ -112,12 +112,12 @@ public abstract class Boss  extends Hero {
     }
 
     @Override
-    public int getMaxHealthPoints() {
+    public double getMaxHealthPoints() {
         return super.getMaxHealthPoints();
     }
 
     @Override
-    public void setMaxHealthPoints(int maxHealthPoints) {
+    public void setMaxHealthPoints(double maxHealthPoints) {
         super.setMaxHealthPoints(maxHealthPoints);
     }
 

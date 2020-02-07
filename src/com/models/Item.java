@@ -12,14 +12,23 @@ public abstract class Item implements IBaseItem, Serializable {
     private int price;
     private boolean isDressed;
     private boolean canBeSold;
-
-    protected Item(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold) {
+    private boolean canBeDressed;
+    protected Item(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold, boolean canBeDressed) {
         this.id = id;
         this.name = name;
         this.weight = weight;
         this.price = price;
         this.isDressed = isDressed;
         this.canBeSold = canBeSold;
+        this.canBeDressed = canBeDressed;
+    }
+
+    public boolean isCanBeDressed() {
+        return canBeDressed;
+    }
+
+    public void setCanBeDressed(boolean canBeDressed) {
+        this.canBeDressed = canBeDressed;
     }
 
     public boolean isCanBeSold() {
@@ -76,7 +85,7 @@ public abstract class Item implements IBaseItem, Serializable {
     @Override
     public void info() {
         System.out.printf("Id: %d,\t Name: %s \n" +
-                        "Is Dress: %s \t Can be sell: %s",
+                        "Is Dress: %s \t Can be sell: %s \n",
                 this.id,
                 this.name,
                 this.isDressed,

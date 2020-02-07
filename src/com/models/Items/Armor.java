@@ -7,10 +7,10 @@ import java.io.Serializable;
 
 public class Armor extends Item implements Serializable {
 
-    private int healthPoints;
+    private double healthPoints;
     private int manaPoints;
 
-    public int getHealthPoints() {
+    public double getHealthPoints() {
         return healthPoints;
     }
 
@@ -33,8 +33,8 @@ public class Armor extends Item implements Serializable {
     private int physicalAverageArmor;
     private int magicalAverageArmor;
 
-    public Armor(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold, int maxPhysicalArmor, int maxMagicalArmor, int minPhysicalArmor, int minMagicalArmor, int healthPoints, int manaPoints) {
-        super(id, name, weight, price, isDressed, canBeSold);
+    public Armor(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold, boolean canBeDressed, int maxPhysicalArmor, int maxMagicalArmor, int minPhysicalArmor, int minMagicalArmor, int healthPoints, int manaPoints) {
+        super(id, name, weight, price, isDressed, canBeSold, canBeDressed);
         this.maxPhysicalArmor = maxPhysicalArmor;
         this.maxMagicalArmor = maxMagicalArmor;
         this.minPhysicalArmor = minPhysicalArmor;
