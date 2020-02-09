@@ -4,7 +4,12 @@ import com.models.Heroes.AttackType;
 
 public abstract class Boss  extends Hero {
 
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6265221311104021985L;
+
+	@Override
     public Shop getShop() {
         return super.getShop();
     }

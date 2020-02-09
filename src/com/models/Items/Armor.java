@@ -7,7 +7,9 @@ import java.io.Serializable;
 
 public class Armor extends Item implements Serializable {
 
-    private double healthPoints;
+  
+	private static final long serialVersionUID = 1L;
+	private double healthPoints;
     private int manaPoints;
 
     public double getHealthPoints() {

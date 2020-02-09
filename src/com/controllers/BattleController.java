@@ -4,7 +4,6 @@ import com.models.Boss;
 import com.models.Hero;
 import com.models.Item;
 import com.models.Items.HealLevelOne;
-import com.models.User;
 import com.sun.istack.internal.NotNull;
 
 public class BattleController {
@@ -59,11 +58,7 @@ public class BattleController {
             bossHp -= currentHero.getAttackAmount() * currentHero.getCriticalHit();
 
         }else {
-            //currentBoss.setHealthPoints(currentBoss.getHealthPoints() - (currentHero.getAttackAmount() * currentHero.getCriticalHit()));
-
             bossHp -= currentHero.getAttackAmount();
-
-
 
         }
         if (currentBoss.getCriticalChance() > bossCritical){

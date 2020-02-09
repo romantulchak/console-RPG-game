@@ -157,6 +157,7 @@ public class Main {
                     shopMenu(userController);
                     break;
                 case 6:
+                	changeHero(userController);
                     break;
                 case 7:
                     exit(0);
@@ -164,6 +165,17 @@ public class Main {
             }
 
         }
+    }
+    private static void changeHero(UserController userController) {
+    	out.println("All your heros");
+    	for(Hero hero : userController.getCurrentUser().getHeroes()) {
+    		out.println("Id: " + hero.getId());
+    		out.println("Name: " + hero.getName());
+    	}
+    	userController.chageHero(getIdForMethods());
+    	if(!userController.isSuccess()) {
+    		out.println("Hero wasn't selected, pls set correct id");
+    	}
     }
 
     private static void battleMenu(UserController userController) {

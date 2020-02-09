@@ -1,14 +1,17 @@
 package com.models.Items;
 
 import com.models.Hero;
-import com.models.IBaseItem;
 import com.models.Item;
 
 import java.io.Serializable;
 
 public class Weapon extends Item implements Serializable {
 
-    private int maxAttack;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int maxAttack;
     private int minAttack;
     private int averageAttack;
 

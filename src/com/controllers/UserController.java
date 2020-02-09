@@ -63,6 +63,14 @@ public class UserController {
             return new ArrayList<>();
         }
     }
+    public void chageHero(int id) {
+    	Hero hero = currentUser.getHeroes().stream().filter(s->s.getId() == id).findFirst().orElse(null);
+    	if(hero != null) {
+    	 	this.currentHero = hero;
+    	}else {
+    		isSuccess = false;
+    	}
+    }
 
     public void save(){
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))){
@@ -244,4 +252,10 @@ public class UserController {
             return null;
         }
     }
+    
+    public boolean isSuccess() {
+    	return this.isSuccess;
+    }
+    
+    
 }

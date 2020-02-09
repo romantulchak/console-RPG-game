@@ -1,7 +1,6 @@
 package com.models.Enemies;
 
 import com.models.Boss;
-import com.models.Hero;
 import com.models.Heroes.AttackType;
 
 public class Diablo extends Boss {
