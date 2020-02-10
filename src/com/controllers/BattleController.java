@@ -67,12 +67,7 @@ public class BattleController {
             heroHp -= currentBoss.getAttackAmount() * currentBoss.getCriticalHit();
 
         }else {
-
-            //currentHero.setHealthPoints(currentHero.getHealthPoints() - currentBoss.getAttackAmount());
-
             heroHp -= currentBoss.getAttackAmount();
-
-
         }
         if (heroHp <= 0 || bossHp <=0) {
             isEnd = true;
@@ -99,7 +94,7 @@ public class BattleController {
         }
         double healToRegenerate =  ((HealLevelOne) item).getHealToRegenerate()- d;
         heroHp += healToRegenerate;
-        System.out.println("Was regenerated: " + healToRegenerate);
+        System.out.printf("Was regenerated: %.1f",healToRegenerate);
         item.removeItem(currentHero);
         userController.save();
 

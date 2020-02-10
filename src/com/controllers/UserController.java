@@ -111,14 +111,12 @@ public class UserController {
         return currentUser;
     }
 
-
-    //TODO: створити додавання предметыв
     public void setUserHero(String name,int id, int heroId) {
         if (currentUser.getHeroes().size() < currentUser.getMaxHero()) {
             Hero hero = heroes.stream().filter(s->s.getId() == heroId).findFirst().orElse(null);
             Inventory inventory = new Inventory(currentUser.getName()+name);
             Item item,item2, item3;
-            item3 = new HealLevelOne(3, "Heal Level 1", 25, 0, false, false,false, 50);
+            item3 = new HealLevelOne(3, false);
             Shop shop = new Shop();
             Boss boss = new Diablo();
             Boss boss1 = new MiraEamon();

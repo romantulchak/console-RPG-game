@@ -7,9 +7,12 @@ import java.util.List;
 
 public abstract class Hero implements IBaseClass, Serializable {
 
-//TODO: Додати критичний урон
 
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 33034448676169356L;
+	private int id;
     private double healthPoints;
     private int manaPoints;
     private int level;
@@ -33,6 +36,7 @@ public abstract class Hero implements IBaseClass, Serializable {
     private Shop shop;
     private int win;
     private int lose;
+    private List<Skill> skills;
 
 
 
@@ -231,7 +235,6 @@ public abstract class Hero implements IBaseClass, Serializable {
     }
 
 
-    //TODO: придумати як піднімати рівень
     @Override
     public void levelUp(double exp) {
 
@@ -239,7 +242,6 @@ public abstract class Hero implements IBaseClass, Serializable {
             this.setLevel(this.getLevel() + 1);
             this.setExperience(this.experience + exp);
             double remainderOfExp = exp - experienceToUp;
-
             while (remainderOfExp > experienceToUp){
                 this.setExperienceToUp(this.experienceToUp + (this.experienceToUp * 1.2));
                 this.setLevel(this.getLevel() + 1);
@@ -322,5 +324,11 @@ public abstract class Hero implements IBaseClass, Serializable {
 
     public void setMaxWeight(int maxWeight) {
         this.maxWeight = maxWeight;
+    }
+    public List<Skill> getSkills(){
+    	return this.skills;
+    }
+    public void setSkills(List<Skill> skills) {
+    	this.skills = skills;
     }
 }

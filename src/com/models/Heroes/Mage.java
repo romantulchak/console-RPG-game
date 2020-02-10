@@ -3,8 +3,12 @@ package com.models.Heroes;
 import com.models.EHeroes;
 import com.models.Hero;
 import com.models.Inventory;
+import com.models.Skill;
+import com.models.Skills.All.FireBlast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mage extends Hero implements Serializable  {
     public Mage(String name, int id, Inventory inventory){
@@ -29,5 +33,9 @@ public class Mage extends Hero implements Serializable  {
         this.setCriticalHit(1.55);
         this.setWin(0);
         this.setLose(0);
+        ArrayList<Skill> skills = new ArrayList<>();
+        FireBlast f = new FireBlast();
+        skills.add(f);
+        this.setSkills(skills);
     }
 }

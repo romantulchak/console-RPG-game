@@ -3,6 +3,7 @@ package com.controllers;
 import com.models.Hero;
 import com.models.Item;
 import com.models.Items.Armor;
+import com.models.Items.HealLevelOne;
 import com.models.Items.Weapon;
 import com.models.Shop;
 import com.models.User;

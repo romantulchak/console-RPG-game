@@ -9,9 +9,17 @@ public abstract class Skill implements IBaseSkills, Serializable {
     private int coolDown;
     private int manaPoint;
     private int price;
-    private int canBeSell;
+    private boolean canBeSell;
+    private int level;
 
-
+    protected Skill(String name, int coolDown,int manaPoint, int price, boolean canBeSell) {
+    	this.name = name;
+    	this.coolDown = coolDown;
+    	this.manaPoint = manaPoint;
+    	this.price = price;
+    	this.canBeSell = canBeSell;
+    }
+    
     public String getName() {
         return name;
     }
@@ -52,11 +60,17 @@ public abstract class Skill implements IBaseSkills, Serializable {
         this.price = price;
     }
 
-    public int getCanBeSell() {
+    public boolean getCanBeSell() {
         return canBeSell;
     }
 
-    public void setCanBeSell(int canBeSell) {
+    public void setCanBeSell(boolean canBeSell) {
         this.canBeSell = canBeSell;
+    }	
+    public int getLevel() {
+    	return this.level;
+    }
+    public void setLevel(int level) {
+    	this.level = level;
     }
 }

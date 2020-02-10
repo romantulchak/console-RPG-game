@@ -149,6 +149,7 @@ public class Main {
                     showInventory(userController);
                     break;
                 case 3:
+                	showSkills(userController);
                     break;
                 case 4:
                     battleMenu(userController);
@@ -166,6 +167,13 @@ public class Main {
 
         }
     }
+    
+    private static void showSkills(UserController userController) {
+    	for(Skill skill : userController.getCurrentHero().getSkills()) {
+    		skill.info();
+    	}
+    }
+    
     private static void changeHero(UserController userController) {
     	out.println("All your heros");
     	for(Hero hero : userController.getCurrentUser().getHeroes()) {
@@ -220,8 +228,6 @@ public class Main {
                         useSkill(battleController);
                         break;
                     case 3:
-                        Stream<Integer> integerStream = Stream.of(-3,-2,-1,0,1,2,3);
-
                         List<Item> healLevelOnes = userController.getCurrentHero().getInventory().getItems().stream().filter(s->s.getClass() == HealLevelOne.class).collect(Collectors.toList());
                         Item item1 = null;
                         if (healLevelOnes.size() ==0) {
@@ -232,9 +238,9 @@ public class Main {
                                 out.println(item.getId());
                                 out.println(item.getName());
                                 out.println(healLevelOne.getHealToRegenerate());
-                                item1 = findItem(userController,getIdForMethods());
-                                battleController.heal(item1);
                             }
+                            item1 = findItem(userController,getIdForMethods());
+                            battleController.heal(item1);
                         }
                         break;
                 }

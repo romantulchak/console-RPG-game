@@ -7,9 +7,7 @@ import java.io.Serializable;
 
 public class Weapon extends Item implements Serializable {
 
-    /**
-	 * 
-	 */
+    //TODO: Створити розподіл на класи зброї
 	private static final long serialVersionUID = 1L;
 	private int maxAttack;
     private int minAttack;
@@ -40,7 +38,7 @@ public class Weapon extends Item implements Serializable {
     }
 
     public int getAverageAttack() {
-        return (minAttack + maxAttack) / 2;
+        return (this.minAttack + this.maxAttack) / 2;
     }
 
 
@@ -60,7 +58,7 @@ public class Weapon extends Item implements Serializable {
                        "Is Dressed: %s \t Can sell: %s \n",
                this.getId(),
                this.getName(),
-               this.averageAttack,
+               this.getAverageAttack(),
                this.minAttack,
                this.maxAttack,
                this.isDressed(),
@@ -73,7 +71,7 @@ public class Weapon extends Item implements Serializable {
 
         if (hero !=null){
             if (this.isDressed()){
-                hero.setAttackAmount(hero.getAttackAmount() - this.averageAttack);
+                hero.setAttackAmount(hero.getAttackAmount() - this.getAverageAttack());
                 this.setDressed(false);
             }else {
                 System.out.println("The item has not been set");

@@ -3,9 +3,11 @@ package com.models.Heroes;
 import com.models.EHeroes;
 import com.models.Hero;
 import com.models.Inventory;
+import com.models.Skill;
+import com.models.Skills.All.FireBlast;
 
 import java.io.Serializable;
-
+import java.util.*;
 public class Warrior extends Hero implements Serializable {
 
     public Warrior(String name, int id, Inventory inventory){

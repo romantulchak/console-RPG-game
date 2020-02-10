@@ -9,9 +9,9 @@ public class HealLevelOne extends Item implements Serializable {
 
     private int healToRegenerate;
 
-    public HealLevelOne(int id, String name, int weight, int price, boolean isDressed, boolean canBeSold, boolean canBeDressed ,int healToRegenerate) {
-        super(id, name, weight, price, isDressed, canBeSold, canBeDressed);
-        this.healToRegenerate = healToRegenerate;
+    public HealLevelOne(int id, boolean canBeSold) {
+        super(id, "Heal level 1", 25, 55, false, canBeSold, false);
+        this.healToRegenerate = 50;
     }
 
 

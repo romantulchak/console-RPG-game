@@ -46,9 +46,12 @@ public class Shop implements Serializable {
                 this.getItems().remove(item);
                 hero.setMoney(hero.getMoney() - item.getPrice());
                 hero.getInventory().setItems(item);
+                System.out.println("Was purchased" + item.getName());
+            }else {
+                System.out.println("Do not enough money");
             }
         }else {
-            System.out.println("Do not enough money");
+        	System.out.println("Item not found");
         }
     }
 }
