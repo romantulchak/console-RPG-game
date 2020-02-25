@@ -4,11 +4,10 @@ import com.models.EHeroes;
 import com.models.Hero;
 import com.models.Inventory;
 import com.models.Skill;
-import com.models.Skills.All.FireBlast;
+import com.models.Skills.All.Magical.FireBlast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Mage extends Hero implements Serializable  {
     public Mage(String name, int id, Inventory inventory){

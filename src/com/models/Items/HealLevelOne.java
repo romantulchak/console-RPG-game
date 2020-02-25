@@ -22,7 +22,8 @@ public class HealLevelOne extends Item implements Serializable {
     public void setHealToRegenerate(int healToRegenerate) {
         this.healToRegenerate = healToRegenerate;
     }
-
+    
+    //TODO: пофіксити хілку для MAG 
     @Override
     public void setItem(Hero hero) {
         if(hero !=null){

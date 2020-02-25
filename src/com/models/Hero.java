@@ -1,6 +1,7 @@
 package com.models;
 
 import com.models.Heroes.AttackType;
+import com.models.Items.HealLevelOne;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +12,7 @@ public abstract class Hero implements IBaseClass, Serializable {
     /**
 	 * 
 	 */
+	//TODO: Додати промахи
 	private static final long serialVersionUID = 33034448676169356L;
 	private int id;
     private double healthPoints;
@@ -37,7 +39,7 @@ public abstract class Hero implements IBaseClass, Serializable {
     private int win;
     private int lose;
     private List<Skill> skills;
-
+    
 
 
 
@@ -215,8 +217,21 @@ public abstract class Hero implements IBaseClass, Serializable {
     }
 
     @Override
-    public void restoreHealth(int amount) {
-        setHealthPoints(this.healthPoints + amount);
+    public double restoreHealth(double amount, double heroHp) {
+      
+    	double difference = heroHp - amount;
+    	 if ( difference < 0 ){
+    		 difference = 0;
+         }
+         double healToRegenerate =  amount- difference;
+         heroHp += healToRegenerate;
+         if(heroHp > this.maxHealthPoints) {
+        	 //TODO: Придумати тут як порахувати 
+        	 healToRegenerate = difference;
+        	 heroHp = this.maxHealthPoints;
+         }
+         System.out.printf("Was regenerated: %.1f",healToRegenerate);
+    	return heroHp;
     }
 
     @Override

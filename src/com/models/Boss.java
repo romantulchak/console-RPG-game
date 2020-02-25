@@ -141,10 +141,6 @@ public abstract class Boss  extends Hero {
         super.attack();
     }
 
-    @Override
-    public void restoreHealth(int amount) {
-        super.restoreHealth(amount);
-    }
 
     @Override
     public void loseHealth(int amount) {

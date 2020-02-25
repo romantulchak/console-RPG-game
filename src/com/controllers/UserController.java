@@ -208,7 +208,9 @@ public class UserController {
         }
         return null;
     }
-
+    public Skill findSkill(int newId) {
+    	return currentHero.getSkills().stream().filter(s->s.getId()==newId).findFirst().orElse(null);
+    }
     public void dropItem(int newId) {
         Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
         if (item !=null) {

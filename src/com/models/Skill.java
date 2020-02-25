@@ -1,9 +1,12 @@
 package com.models;
 
+import com.models.Skills.SkillCategory;
+
 import java.io.Serializable;
 
 public abstract class Skill implements IBaseSkills, Serializable {
 
+	private int id;
     private String name;
     private boolean isRecharge;
     private int coolDown;
@@ -11,8 +14,10 @@ public abstract class Skill implements IBaseSkills, Serializable {
     private int price;
     private boolean canBeSell;
     private int level;
+    private SkillCategory skillCategory;
 
-    protected Skill(String name, int coolDown,int manaPoint, int price, boolean canBeSell) {
+    protected Skill(int id, String name, int coolDown,int manaPoint, int price, boolean canBeSell) {
+    	this.setId(id);
     	this.name = name;
     	this.coolDown = coolDown;
     	this.manaPoint = manaPoint;
@@ -72,5 +77,30 @@ public abstract class Skill implements IBaseSkills, Serializable {
     }
     public void setLevel(int level) {
     	this.level = level;
+    }
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public SkillCategory getSkillCategory(){
+        return this.skillCategory;
+    }
+    @Override
+    public double useSkill(Hero hero, double bossHp) {
+        return 0;
+    }
+
+    public void setSkillCategory(SkillCategory skillCategory) {
+        this.skillCategory = skillCategory;
+    }
+
+    @Override
+    public double useSkill(double heroHp) {
+        return heroHp;
     }
 }

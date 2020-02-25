@@ -3,7 +3,9 @@ package com.controllers;
 import com.models.Boss;
 import com.models.Hero;
 import com.models.Item;
+import com.models.Skill;
 import com.models.Items.HealLevelOne;
+import com.models.Skills.SkillCategory;
 import com.sun.istack.internal.NotNull;
 
 public class BattleController {
@@ -14,7 +16,7 @@ public class BattleController {
     private boolean isEnd = false;
     private boolean bossWin;
     private boolean heroWin;
-
+    private Skill skill;
 
     private double heroHp;
     private double bossHp;
@@ -85,19 +87,19 @@ public class BattleController {
         }
     }
     public void heal(@NotNull Item item){
-
-
-
-        double d = heroHp - ((HealLevelOne) item).getHealToRegenerate();
-        if ( d < 0 ){
-            d = 0;
-        }
-        double healToRegenerate =  ((HealLevelOne) item).getHealToRegenerate()- d;
-        heroHp += healToRegenerate;
-        System.out.printf("Was regenerated: %.1f",healToRegenerate);
-        item.removeItem(currentHero);
+    	heroHp = currentHero.restoreHealth(((HealLevelOne) item).getHealToRegenerate(), heroHp);
+    	item.removeItem(currentHero);
         userController.save();
 
+    }
+    public void useSkill(Skill skill) {
+        this.skill = skill;
+        if (skill.getSkillCategory() == SkillCategory.ATTACK) {
+            bossHp = skill.useSkill(currentHero, bossHp);
+        }
+        if (skill.getSkillCategory() == SkillCategory.DEFENCE){
+            heroHp = skill.useSkill(heroHp);
+        }
     }
 
 }

@@ -4,10 +4,11 @@ import com.models.EHeroes;
 import com.models.Hero;
 import com.models.Inventory;
 import com.models.Skill;
-import com.models.Skills.All.FireBlast;
+import com.models.Skills.All.Defence.UpDefence;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+
 public class Warrior extends Hero implements Serializable {
 
     public Warrior(String name, int id, Inventory inventory){
@@ -32,8 +33,12 @@ public class Warrior extends Hero implements Serializable {
         this.setCriticalHit(2.25);
         this.setWin(0);
         this.setLose(0);
+        ArrayList<Skill> skills = new ArrayList<>();
+        UpDefence sk = new UpDefence();
+        skills.add(sk);
+        this.setSkills(skills);
     }
-
+    
 
 
 }

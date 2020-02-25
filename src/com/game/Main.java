@@ -5,15 +5,12 @@ import com.controllers.ShopController;
 import com.controllers.UserController;
 import com.models.*;
 import com.models.Items.HealLevelOne;
-import com.models.Items.Weapon;
 import com.sun.istack.internal.NotNull;
 
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.lang.System.*;
 
@@ -102,7 +99,7 @@ public class Main {
     private static void showAllHeroes(UserController userController) {
 
         for (Hero hero : userController.getCurrentUser().getHeroes()) {
-            out.printf("Hero id: %d \t Hero name: %s \t Hero profession: %s \t  Health: %d \t Mana: %d \t Attack: %d\n",
+            out.printf("Hero id: %d \t Hero name: %s \t Hero profession: %s \t  Health: %.1f \t Mana: %d \t Attack: %d\n",
                     hero.getId(),
                     hero.getName(),
                     hero.getProfession(),
@@ -225,7 +222,12 @@ public class Main {
                         battleController.attack();
                         break;
                     case 2:
-                        useSkill(battleController);
+                   
+                    	for(Skill skill : userController.getCurrentHero().getSkills()) {
+                    		out.printf("Id: %s \n Name: %s \n", skill.getId(), skill.getName());
+                    	}
+                    	Skill skill = findSkill(userController, getIdForMethods());
+                        battleController.useSkill(skill);
                         break;
                     case 3:
                         List<Item> healLevelOnes = userController.getCurrentHero().getInventory().getItems().stream().filter(s->s.getClass() == HealLevelOne.class).collect(Collectors.toList());
@@ -255,15 +257,8 @@ public class Main {
     private static HealLevelOne findItem(UserController userController, int itemId) {
         return userController.useHeal(itemId);
     }
-
-    private static void heal(BattleController battleController){
-
-    }
-
-    private static void useSkill(BattleController battleController) {
-    }
-
-    private static void attack(BattleController battleController) {
+    private static Skill findSkill(UserController userController, int skillId) {
+    	return userController.findSkill(skillId);
     }
 
     private static void allBosses(UserController userController) {

@@ -3,7 +3,7 @@ package com.models;
 public interface IBaseClass {
 
     void attack();
-    void restoreHealth(int amount);
+    double restoreHealth(double amount, double heroHp);
     void loseHealth(int amount);
     void restoreMana(int amount);
     void loseMana(int amount);

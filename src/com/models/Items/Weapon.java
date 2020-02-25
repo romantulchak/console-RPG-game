@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class Weapon extends Item implements Serializable {
 
-    //TODO: Створити розподіл на класи зброї
+  
 	private static final long serialVersionUID = 1L;
 	private int maxAttack;
     private int minAttack;
