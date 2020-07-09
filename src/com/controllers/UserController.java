@@ -63,13 +63,14 @@ public class UserController {
             return new ArrayList<>();
         }
     }
-    public void chageHero(int id) {
-    	Hero hero = currentUser.getHeroes().stream().filter(s->s.getId() == id).findFirst().orElse(null);
-    	if(hero != null) {
-    	 	this.currentHero = hero;
-    	}else {
-    		isSuccess = false;
-    	}
+    public void changeHero(String heroName) {
+        Hero hero = currentUser.getHeroes().stream().filter(s->s.getName().equals(heroName)).findFirst().orElse(null);
+        if(hero != null) {
+            this.currentHero = hero;
+            isSuccess = true;
+        }else {
+            isSuccess = false;
+        }
     }
 
     public void save(){
@@ -94,8 +95,8 @@ public class UserController {
 
     }
 
-    public Hero chooseHero(int id){
-        Hero hero = heroes.stream().filter(x->x.getId() == id).findFirst().orElse(null);
+    public Hero chooseHero(String username){
+        Hero hero = heroes.stream().filter(x->x.getName().equals(username)).findFirst().orElse(null);
         if (hero !=null){
             currentHero = hero;
             isSuccess = true;
@@ -165,7 +166,7 @@ public class UserController {
                 System.out.println("Hero with the same id has already been created");
             }
 
-         }else {
+        }else {
             System.out.println("You have created a maximum of heroes");
         }
         heroes = currentUser.getHeroes();
@@ -209,7 +210,7 @@ public class UserController {
         return null;
     }
     public Skill findSkill(int newId) {
-    	return currentHero.getSkills().stream().filter(s->s.getId()==newId).findFirst().orElse(null);
+        return currentHero.getSkills().stream().filter(s->s.getId()==newId).findFirst().orElse(null);
     }
     public void dropItem(int newId) {
         Item item = currentHero.getInventory().getItems().stream().filter(s->s.getId() == newId).findFirst().orElse(null);
@@ -252,10 +253,10 @@ public class UserController {
             return null;
         }
     }
-    
+
     public boolean isSuccess() {
-    	return this.isSuccess;
+        return this.isSuccess;
     }
-    
-    
+
+
 }

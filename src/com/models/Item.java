@@ -1,5 +1,7 @@
 package com.models;
 
+import com.models.Interfaces.IBaseItem;
+
 import java.io.Serializable;
 
 public abstract class Item implements IBaseItem, Serializable {
@@ -31,8 +33,8 @@ public abstract class Item implements IBaseItem, Serializable {
         this.canBeDressed = canBeDressed;
     }
 
-    public boolean isCanBeSold() {
-        return canBeSold;
+    public String isCanBeSold() {
+        return canBeSold ? "Yes" : "No";
     }
 
     public void setCanBeSold(boolean canBeSold) {
@@ -85,12 +87,12 @@ public abstract class Item implements IBaseItem, Serializable {
     @Override
     public void info() {
         System.out.printf("Id: %d,\t Name: %s \n" +
-                        "Is Dress: %s \t Can be sell: %s \n",
+                        "Is Dressed: %s \t Can be sell: %s \n",
                 this.id,
                 this.name,
                 this.isDressed,
                 this.canBeSold
-                );
+        );
     }
 
     public boolean isDressed() {
@@ -107,7 +109,6 @@ public abstract class Item implements IBaseItem, Serializable {
             if (canBeSold) {
                 hero.setMoney(hero.getMoney() + this.price);
                 hero.getInventory().getItems().remove(this);
-
             }else {
                 System.out.println("Item cannot be sold");
             }

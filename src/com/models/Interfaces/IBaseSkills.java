@@ -1,4 +1,6 @@
-package com.models;
+package com.models.Interfaces;
+
+import com.models.Hero;
 
 public interface IBaseSkills {
     double useSkill(Hero hero, double bossHp);

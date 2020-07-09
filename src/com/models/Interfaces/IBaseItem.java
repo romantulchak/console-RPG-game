@@ -1,4 +1,6 @@
-package com.models;
+package com.models.Interfaces;
+
+import com.models.Hero;
 
 public interface IBaseItem {
     void removeItem(Hero hero);

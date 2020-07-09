@@ -57,35 +57,35 @@ public class Main {
         if (userController.isFirstHero) {
             createHero(userController);
         }
-            for (Hero hero : userController.getCurrentUser().getHeroes()){
-                out.println(hero.getId());
-                out.println(hero.getName());
+        for (Hero hero : userController.getCurrentUser().getHeroes()){
+            out.println(hero.getId());
+            out.println(hero.getName());
+        }
+        while (true) {
+            out.println(userController.getCurrentUser().getName());
+            out.println("What do you want to do ?");
+            out.println("1) Choose hero");
+            out.println("2) Create new hero");
+            out.println("3) Show all heroes");
+            out.println("4) Remove hero");
+            int id = input.nextInt();
+            input.nextLine();
+            switch (id) {
+                case 1:
+                    chooseHero(userController);
+                    break;
+                case 2:
+                    createHero(userController);
+                    break;
+                case 3:
+                    showAllHeroes(userController);
+                    break;
+                case 4:
+                    removeHero(userController);
+                    break;
             }
-            while (true) {
-                out.println(userController.getCurrentUser().getName());
-                out.println("What do you want to do ?");
-                out.println("1) Choose hero");
-                out.println("2) Create new hero");
-                out.println("3) Show all heroes");
-                out.println("4) Remove hero");
-                int id = input.nextInt();
-                input.nextLine();
-                switch (id) {
-                    case 1:
-                        chooseHero(userController);
-                        break;
-                    case 2:
-                        createHero(userController);
-                        break;
-                    case 3:
-                        showAllHeroes(userController);
-                        break;
-                    case 4:
-                        removeHero(userController);
-                        break;
-                }
 
-            }
+        }
 
     }
 
@@ -106,17 +106,16 @@ public class Main {
                     hero.getHealthPoints(),
                     hero.getManaPoints(),
                     hero.getAttackAmount()
-                    );
+            );
         }
     }
 
 
     private static void chooseHero(UserController userController){
         out.println("Choose your hero");
-        out.println("Pls set id");
-        int id = input.nextInt();
-        input.nextLine();
-        Hero hero = userController.chooseHero(id);
+        out.println("Pls enter hero nickname");
+        String heroName = input.nextLine();
+        Hero hero = userController.chooseHero(heroName);
         if (hero !=null) {
             heroMenu(userController);
         }else {
@@ -126,7 +125,6 @@ public class Main {
 
     //TODO: перевірка на то чи існує персонаж чи ні
     private static void heroMenu(UserController userController) {
-
         userController.getCurrentHero().info();
         while (true) {
             out.println("1) Show information about hero");
@@ -146,7 +144,7 @@ public class Main {
                     showInventory(userController);
                     break;
                 case 3:
-                	showSkills(userController);
+                    showSkills(userController);
                     break;
                 case 4:
                     battleMenu(userController);
@@ -155,7 +153,7 @@ public class Main {
                     shopMenu(userController);
                     break;
                 case 6:
-                	changeHero(userController);
+                    changeHero(userController);
                     break;
                 case 7:
                     exit(0);
@@ -164,23 +162,48 @@ public class Main {
 
         }
     }
-    
+
     private static void showSkills(UserController userController) {
-    	for(Skill skill : userController.getCurrentHero().getSkills()) {
-    		skill.info();
-    	}
+        for(Skill skill : userController.getCurrentHero().getSkills()) {
+            skill.info();
+        }
     }
-    
+
     private static void changeHero(UserController userController) {
-    	out.println("All your heros");
-    	for(Hero hero : userController.getCurrentUser().getHeroes()) {
-    		out.println("Id: " + hero.getId());
-    		out.println("Name: " + hero.getName());
-    	}
-    	userController.chageHero(getIdForMethods());
-    	if(!userController.isSuccess()) {
-    		out.println("Hero wasn't selected, pls set correct id");
-    	}
+        boolean changeHeroMenu = true;
+        while (changeHeroMenu){
+            out.println("1) Show all heroes");
+            out.println("2) Change hero");
+            out.println("3) Back to menu");
+            int id = input.nextInt();
+            switch (id){
+                case 1:
+                    showAllHeroes(userController);
+                    break;
+                case 2:
+                    input.nextLine();
+                    out.println("Enter nickname");
+                    String heroName = input.nextLine();
+                    userController.changeHero(heroName);
+                    if(!userController.isSuccess()) {
+                        out.println("Hero wasn't selected, pls set correct id");
+                    }else{
+                        changeHeroMenu = false;
+                        out.println("Hero was changed");
+                    }
+                    break;
+                default:
+                    changeHeroMenu = false;
+                    break;
+            }
+        }
+
+
+
+
+
+
+
     }
 
     private static void battleMenu(UserController userController) {
@@ -200,12 +223,11 @@ public class Main {
     private static void battle(UserController userController) {
         out.println("Chose boss");
         for (Boss boss: userController.getCurrentHero().getBosses()
-             ) {
+        ) {
             out.println(boss.getId());
             out.println(boss.getName());
 
         }
-
         int bossId = input.nextInt();
         Boss boss = userController.boss(bossId);
         if (userController.isSuccess) {
@@ -215,18 +237,16 @@ public class Main {
                 out.println("1) Attack");
                 out.println("2) Use Skill");
                 out.println("3) Heal");
-
                 int id = input.nextInt();
                 switch (id) {
                     case 1:
                         battleController.attack();
                         break;
                     case 2:
-                   
-                    	for(Skill skill : userController.getCurrentHero().getSkills()) {
-                    		out.printf("Id: %s \n Name: %s \n", skill.getId(), skill.getName());
-                    	}
-                    	Skill skill = findSkill(userController, getIdForMethods());
+                        for(Skill skill : userController.getCurrentHero().getSkills()) {
+                            out.printf("Id: %s \n Name: %s \n", skill.getId(), skill.getName());
+                        }
+                        Skill skill = findSkill(userController, getIdForMethods());
                         battleController.useSkill(skill);
                         break;
                     case 3:
@@ -258,7 +278,7 @@ public class Main {
         return userController.useHeal(itemId);
     }
     private static Skill findSkill(UserController userController, int skillId) {
-    	return userController.findSkill(skillId);
+        return userController.findSkill(skillId);
     }
 
     private static void allBosses(UserController userController) {
@@ -303,6 +323,7 @@ public class Main {
         out.println("2) Sell item");
         out.println("3) Drop item");
         out.println("4) Remove item");
+        out.println("5) Back to menu");
         int id = input.nextInt();
         input.nextLine();
         switch (id){
@@ -317,6 +338,8 @@ public class Main {
                 break;
             case 4:
                 userController.removeItem(getIdForMethods());
+            default:
+                break;
         }
     }
     private static int getIdForMethods(){
@@ -326,20 +349,18 @@ public class Main {
         return newId;
     }
     private static void createHero(@NotNull UserController userController) {
-
-            out.println("Create your first hero");
-            out.println("Set your hero name");
-            String heroName = input.nextLine();
-            out.println("Choose profession you should write 1, 2 or 3");
-            int i = 1;
-            for (EHeroes hero : EHeroes.values()) {
-                out.println(i++ + ")" + hero.name());
-            }
-            int id = input.nextInt();
-
-            out.println("Set an id for your hero it will help you in the future");
-            int idHero = input.nextInt();
-            userController.setUserHero(heroName, id, idHero);
+        out.println("Create your first hero");
+        out.println("Set your hero name");
+        String heroName = input.nextLine();
+        out.println("Choose profession you should write 1, 2 or 3");
+        int i = 1;
+        for (EHeroes hero : EHeroes.values()) {
+            out.println(i++ + ")" + hero.name());
+        }
+        int id = input.nextInt();
+        out.println("Set an id for your hero it will help you in the future");
+        int idHero = input.nextInt();
+        userController.setUserHero(heroName, id, idHero);
 
     }
 
@@ -353,7 +374,7 @@ public class Main {
         if (userController.isSuccess) {
             menu(userController);
         }else if (userController.isNew){
-            
+
             out.println("Do you want to sign up ?");
             out.println("1) Yes");
             out.println("2) No");
@@ -373,4 +394,3 @@ public class Main {
         }
     }
 }
-

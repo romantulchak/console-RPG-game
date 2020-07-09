@@ -4,12 +4,9 @@ import com.models.Heroes.AttackType;
 
 public abstract class Boss  extends Hero {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6265221311104021985L;
+    private static final long serialVersionUID = -6265221311104021985L;
 
-	@Override
+    @Override
     public Shop getShop() {
         return super.getShop();
     }
@@ -161,7 +158,20 @@ public abstract class Boss  extends Hero {
 
     @Override
     public void info() {
-        super.info();
+        System.out.printf("Boss name: %s \t Level: %d \n" +
+                        "Health: %.1f \t Mana: %d \nAttack type: %s \t Attack: %d \n" +
+                        "Physical armor: %d \t Magical armor: %d\n" +
+                        "Money: %d \n " ,
+                this.getName(),
+                this.getLevel(),
+                this.getHealthPoints(),
+                this.getManaPoints(),
+                this.getAttackType(),
+                this.getAttackAmount(),
+                this.getPhysicalArmor(),
+                this.getMagicalArmor(),
+                this.getMoney()
+        );
     }
 
     @Override
@@ -223,4 +233,6 @@ public abstract class Boss  extends Hero {
     public void setMaxWeight(int maxWeight) {
         super.setMaxWeight(maxWeight);
     }
+
+
 }

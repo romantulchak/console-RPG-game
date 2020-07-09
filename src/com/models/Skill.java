@@ -1,5 +1,6 @@
 package com.models;
 
+import com.models.Interfaces.IBaseSkills;
 import com.models.Skills.SkillCategory;
 
 import java.io.Serializable;

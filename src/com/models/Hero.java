@@ -1,7 +1,7 @@
 package com.models;
 
 import com.models.Heroes.AttackType;
-import com.models.Items.HealLevelOne;
+import com.models.Interfaces.IBaseClass;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,11 +10,11 @@ public abstract class Hero implements IBaseClass, Serializable {
 
 
     /**
-	 * 
-	 */
-	//TODO: Додати промахи
-	private static final long serialVersionUID = 33034448676169356L;
-	private int id;
+     *
+     */
+    //TODO: Додати промахи
+    private static final long serialVersionUID = 33034448676169356L;
+    private int id;
     private double healthPoints;
     private int manaPoints;
     private int level;
@@ -39,14 +39,6 @@ public abstract class Hero implements IBaseClass, Serializable {
     private int win;
     private int lose;
     private List<Skill> skills;
-    
-
-
-
-
-
-
-
 
     public void setCriticalHit(double criticalHit){
         this.criticalHit = criticalHit;
@@ -218,20 +210,20 @@ public abstract class Hero implements IBaseClass, Serializable {
 
     @Override
     public double restoreHealth(double amount, double heroHp) {
-      
-    	double difference = heroHp - amount;
-    	 if ( difference < 0 ){
-    		 difference = 0;
-         }
-         double healToRegenerate =  amount- difference;
-         heroHp += healToRegenerate;
-         if(heroHp > this.maxHealthPoints) {
-        	 //TODO: Придумати тут як порахувати 
-        	 healToRegenerate = difference;
-        	 heroHp = this.maxHealthPoints;
-         }
-         System.out.printf("Was regenerated: %.1f",healToRegenerate);
-    	return heroHp;
+
+        double difference = heroHp - amount;
+        if ( difference < 0 ){
+            difference = 0;
+        }
+        double healToRegenerate =  amount- difference;
+        heroHp += healToRegenerate;
+        if(heroHp > this.maxHealthPoints) {
+            //TODO: Придумати тут як порахувати
+            healToRegenerate = difference;
+            heroHp = this.maxHealthPoints;
+        }
+        System.out.printf("Was regenerated: %.1f",healToRegenerate);
+        return heroHp;
     }
 
     @Override
@@ -289,7 +281,7 @@ public abstract class Hero implements IBaseClass, Serializable {
                 this.win,
                 this.lose,
                 this.money
-                );
+        );
 
     }
 
@@ -341,9 +333,9 @@ public abstract class Hero implements IBaseClass, Serializable {
         this.maxWeight = maxWeight;
     }
     public List<Skill> getSkills(){
-    	return this.skills;
+        return this.skills;
     }
     public void setSkills(List<Skill> skills) {
-    	this.skills = skills;
+        this.skills = skills;
     }
 }
